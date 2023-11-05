@@ -7,30 +7,46 @@ import com.example.jul_allim.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
+    init{
+        instance = this
+    }
+    companion object{
+        private var instance:MainActivity? = null
+        fun getInstance(): MainActivity? {
+            return instance
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
             // 화면 초기화 부분
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setMainFragment(NotionFragment())
+        setMainFragment(NotionFragment(),"공지사항")
         setContentView(binding.root)
+
+        /*
+        val test_ = false
+        binding.btn2.isEnabled = test_
+            이걸로 버튼 비활성화 가능
+        */
+
 
             // 하단바 버튼 클릭시 페이지 이동
         binding.btn1.setOnClickListener {
-            binding.textTitle.text = "공지사항"
-            setMainFragment(NotionFragment())
+            setMainFragment(NotionFragment(),"공지사항")
         }
         binding.btn2.setOnClickListener {
-            binding.textTitle.text = "캘린더"
-            setMainFragment(CalenderFragment())
+            setMainFragment(CalenderFragment(),"캘린더")
         }
 
 
     }
 
-    fun setMainFragment(fragment: Fragment){
+    fun setMainFragment( fragment: Fragment,title: String){
         supportFragmentManager.beginTransaction().apply {
             replace(binding.mainScreen.id,fragment)
             commit()
         }
+        binding.textTitle.text = title
     }
 }

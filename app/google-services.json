@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "759373870874",
+    "firebase_url": "https://test-d5107-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "test-d5107",
+    "storage_bucket": "test-d5107.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759373870874:android:291de356a4ebc983179ea3",
+        "android_client_info": {
+          "package_name": "com.example.firebase_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPVm0_tAxwnuCltoEZkS3zNRCGn9qdAFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759373870874:android:5ce0f182d289533c179ea3",
+        "android_client_info": {
+          "package_name": "com.example.jul_allim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPVm0_tAxwnuCltoEZkS3zNRCGn9qdAFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

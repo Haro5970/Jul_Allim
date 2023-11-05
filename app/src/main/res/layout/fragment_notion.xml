@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/notion_table"
+        android:overScrollMode="never"
         app:layout_constraintStart_toStartOf="@+id/title_jul"
         app:layout_constraintTop_toBottomOf="@+id/title_jul" />
 
@@ -50,5 +51,24 @@
         android:overScrollMode="never"
         app:layout_constraintStart_toStartOf="@+id/jul_list"
         app:layout_constraintTop_toBottomOf="@+id/title_kau" />
+
+    <Button
+        android:id="@+id/btn_jul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="@+id/title_jul"
+        app:layout_constraintStart_toEndOf="@+id/title_jul"
+        app:layout_constraintTop_toTopOf="@+id/title_jul" />
+
+    <Button
+        android:id="@+id/btn_kau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="@+id/title_kau"
+        app:layout_constraintStart_toStartOf="@+id/btn_jul"
+        app:layout_constraintTop_toTopOf="@+id/title_kau" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
