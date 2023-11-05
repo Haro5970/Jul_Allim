@@ -7,6 +7,8 @@ import com.example.jul_allim.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
+
+        // setMainFragment 메소드를 다른 프레그먼트에서 사용하기 위해 companion객체 생성
     init{
         instance = this
     }
@@ -19,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-            // 화면 초기화 부분
+            // 화면 초기화
         binding = ActivityMainBinding.inflate(layoutInflater)
         setMainFragment(NotionFragment(),"공지사항")
         setContentView(binding.root)
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    // fragment 띄울 프래그먼트, title 상단 제목
     fun setMainFragment( fragment: Fragment,title: String){
         supportFragmentManager.beginTransaction().apply {
             replace(binding.mainScreen.id,fragment)
