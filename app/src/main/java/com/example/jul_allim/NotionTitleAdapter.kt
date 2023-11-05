@@ -31,7 +31,7 @@ class NotionTitleAdapter(val notions: Array<Notion>)
 
 
             binding.root.setOnClickListener{
-                NotionFragment().toNotion(notion)
+                toNotion(notion)
             }
         }
     }
