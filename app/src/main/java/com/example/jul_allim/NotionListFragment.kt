@@ -38,19 +38,14 @@ class NotionListFragment(val title: String, val Jul_Kau: String) : Fragment() {
     ): View? {
         val binding = FragmentNotionListBinding.inflate(inflater, container, false)
 
-        val notions = arrayListOf<Notion>()
+        var notions: Array<Notion> = arrayOf()
         lifecycleScope.launch {
-            Firebase.database.getReference("Notion/${Jul_Kau}").get()
-                .addOnSuccessListener {
-                    (it.value as ArrayList<HashMap<*, *>>).forEach {
-                        notions.add(Notion("${it.get("id")!!}", "${it.get("content")}"))
-                    }
-                }.await()
+            notions = getNotions(Jul_Kau)
 
 
             Log.d("firebase1", notions.toString())
             binding.notionTitle.text = title
-            binding.notionList.adapter = NotionTitleAdapter(notions.toTypedArray())
+            binding.notionList.adapter = NotionTitleAdapter(notions)
             binding.notionList.layoutManager = LinearLayoutManager(binding.root.context)
         }
 
