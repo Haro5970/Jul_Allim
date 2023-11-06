@@ -45,6 +45,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     // fragment 띄울 프래그먼트, title 상단 제목
+    /*
+    MainActivity.getInstance()
+        ?.setMainFragment(띄울 프래그먼트,화면 이름)
+     */
     fun setMainFragment( fragment: Fragment,title: String){
         supportFragmentManager.beginTransaction().apply {
             replace(binding.mainScreen.id,fragment)

@@ -45,7 +45,7 @@ class NotionListFragment(val title: String, val Jul_Kau: String) : Fragment() {
 
             Log.d("firebase1", notions.toString())
             binding.notionTitle.text = title
-            binding.notionList.adapter = NotionTitleAdapter(notions)
+            binding.notionList.adapter = NotionTitleAdapter(notions,Jul_Kau)
             binding.notionList.layoutManager = LinearLayoutManager(binding.root.context)
         }
 

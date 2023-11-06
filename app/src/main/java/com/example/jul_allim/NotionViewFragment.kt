@@ -18,6 +18,7 @@ class NotionViewFragment(val notion: Notion) : Fragment() {
     ): View? {
         val binding = FragmentNotionViewBinding.inflate(inflater, container, false)
         binding.notionView.text = notion.content
+        binding.notionId.text = notion.id
         return binding.root
     }
 }

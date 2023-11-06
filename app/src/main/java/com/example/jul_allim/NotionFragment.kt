@@ -37,12 +37,12 @@ class NotionFragment : Fragment() {
             // 줄울림 공지 리스트
             binding.julList.layoutManager = LinearLayoutManager(binding.root.context)
             binding.julList.adapter =
-                NotionTitleAdapter(jul_notions.copyOfRange(0, minOf(7, jul_notions.size)))
+                NotionTitleAdapter(jul_notions.copyOfRange(0, minOf(7, jul_notions.size)),"Jul")
 
             // 학교 공지 리스트
             binding.kauList.layoutManager = LinearLayoutManager(binding.root.context)
             binding.kauList.adapter =
-                NotionTitleAdapter(kau_notions.copyOfRange(0, minOf(5, kau_notions.size)))
+                NotionTitleAdapter(kau_notions.copyOfRange(0, minOf(5, kau_notions.size)),"Kau")
 
 
             // +버튼 클릭

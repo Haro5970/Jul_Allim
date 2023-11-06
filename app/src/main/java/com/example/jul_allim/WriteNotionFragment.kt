@@ -12,6 +12,7 @@ import com.example.jul_allim.databinding.FragmentWriteNotionBinding
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 
 class WriteNotionFragment : Fragment() {
 
@@ -24,21 +25,19 @@ class WriteNotionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentWriteNotionBinding.inflate(inflater,container,false)
-
+        val today = SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis())
         binding.btnUpload.setOnClickListener {
             val JK = if(binding.swichJK.isChecked) "Kau" else "Jul"
             var notions: Array<Notion> = arrayOf()
             lifecycleScope.launch {
-                launch { notions = getNotions(JK) }.join()
-                val txt = binding.writespace.text.toString()
-                val indexOfnotion: Int = notions.size
-                Log.d("newNotion",indexOfnotion.toString())
-                val id = "20231102"+indexOfnotion.toString()
 
-                var data = hashMapOf<String,String>("id" to id,"content" to txt)
+                launch { notions = getNotions(JK).filter{it.id.startsWith(today)}.toTypedArray() }.join()
+                val id = if(notions.size==0) today+"00" else (notions.get(0).id.toInt()+1).toString()
+                val txt = binding.writespace.text.toString()
+                val data = hashMapOf<String,String>("id" to id,"content" to txt)
                 launch {
                     Firebase.database.getReference("Notion").child(JK)
-                        .child(indexOfnotion.toString()).setValue(data)
+                        .child(notions.size.toString()).setValue(data)
                 }.join()
                 MainActivity.getInstance()
                     ?.setMainFragment(NotionFragment(),"공지사항")
