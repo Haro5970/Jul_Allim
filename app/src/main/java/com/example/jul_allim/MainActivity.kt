@@ -37,6 +37,9 @@ class MainActivity : AppCompatActivity() {
             setMainFragment(CalenderFragment(),"캘린더")
         }
 
+        binding.btn5.setOnClickListener {
+            setMainFragment(ProfileFragment(), "프로필 설정")
+        }
 
     }
 
@@ -53,4 +56,8 @@ class MainActivity : AppCompatActivity() {
         Log.d("setMainFragment",title)
         binding.textTitle.text = title
     }
+
+    // 캘린더뷰
+
+
 }
