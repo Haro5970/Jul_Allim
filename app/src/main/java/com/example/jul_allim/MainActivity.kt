@@ -2,6 +2,7 @@ package com.example.jul_allim
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.jul_allim.databinding.ActivityMainBinding
 
@@ -26,11 +27,6 @@ class MainActivity : AppCompatActivity() {
         setMainFragment(NotionFragment(),"공지사항")
         setContentView(binding.root)
 
-        /*
-        val test_ = false
-        binding.btn2.isEnabled = test_
-            이걸로 버튼 비활성화 가능
-        */
 
 
             // 하단바 버튼 클릭시 페이지 이동
@@ -54,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             replace(binding.mainScreen.id,fragment)
             commit()
         }
+        Log.d("setMainFragment",title)
         binding.textTitle.text = title
     }
 }

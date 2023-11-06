@@ -60,9 +60,8 @@ class NotionFragment : Fragment() {
                 MainActivity.getInstance()
                     ?.setMainFragment(WriteNotionFragment(),"새 공지사항")
             }
-
-
         }
+
 
         return binding.root
     }
