@@ -36,6 +36,9 @@ class MainActivity : AppCompatActivity() {
         binding.btn2.setOnClickListener {
             setMainFragment(CalenderFragment(),"캘린더")
         }
+        binding.btn3.setOnClickListener {
+            setMainFragment(ClubReservationFragment(),"동방예약")
+        }
 
         binding.btn5.setOnClickListener {
             setMainFragment(ProfileFragment(), "프로필 설정")
