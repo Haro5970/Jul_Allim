@@ -52,34 +52,43 @@
         app:layout_constraintStart_toStartOf="@+id/jul_list"
         app:layout_constraintTop_toBottomOf="@+id/title_kau" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_jul"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:text="+"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="@+id/title_jul"
-        app:layout_constraintStart_toEndOf="@+id/title_jul"
-        app:layout_constraintTop_toTopOf="@+id/title_jul" />
+        app:layout_constraintEnd_toEndOf="@+id/jul_list"
+        app:tint="#808080"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_kau"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="@+id/title_kau"
         app:layout_constraintStart_toStartOf="@+id/btn_jul"
-        app:layout_constraintTop_toTopOf="@+id/title_kau" />
+        app:tint="#808080"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnNew"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="+"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_input_add"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="#808080"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
