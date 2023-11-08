@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setUnderbarColor( btnN: Int){
+
         val btn_arr=arrayOf(binding.btn1,binding.btn2,binding.btn3,binding.btn4,binding.btn5)
         for( i:Int in 1..5){
             if(btnN==i){
