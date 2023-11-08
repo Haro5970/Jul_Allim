@@ -5,8 +5,8 @@
     android:id="@+id/frameLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#C9C9C9"
     android:scrollbarDefaultDelayBeforeFade="300"
-    android:scrollbarFadeDuration="10"
     android:scrollbarSize="4dp"
     tools:context=".ProfileFragment">
 
@@ -15,8 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
-        android:background="#BDB5CC"
-        android:backgroundTint="#BDB5CC"
+        android:background="#EAE4F4"
+        android:backgroundTint="#EAE4F4"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,6 +29,7 @@
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:clickable="true"
             android:src="@drawable/profile" />/>
 
         <LinearLayout
@@ -78,6 +79,26 @@
 
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="450dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="줄울림 35기 부원" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
