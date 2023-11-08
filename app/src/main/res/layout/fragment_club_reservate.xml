@@ -7,12 +7,12 @@
 
     <TextView
         android:id="@+id/rsv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_width="108dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="20dp"
         android:text="날짜 선택"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,38 +23,70 @@
         android:layout_height="135dp"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rsv_title" />
+        android:endYear="2024"
+        android:startYear="2023"
+        app:layout_constraintStart_toStartOf="@+id/rsv_title"
+        app:layout_constraintTop_toBottomOf="@+id/rsv_title"
+        style= "RYZZE_DATEPICKER"/>
 
     <Button
         android:id="@+id/btn_ch"
-        android:layout_width="101dp"
-        android:layout_height="40dp"
+        android:layout_width="79dp"
+        android:layout_height="41dp"
         android:layout_gravity="center"
+        android:layout_marginStart="-20dp"
+        android:backgroundTint="#676767"
         android:text="선택"
+        app:iconTint="#494949"
+        app:iconTintMode="multiply"
+        app:layout_constraintBottom_toBottomOf="@+id/pick_date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pick_date" />
+        app:layout_constraintStart_toEndOf="@+id/pick_date"
+        app:layout_constraintTop_toTopOf="@+id/pick_date" />
+
+    <Button
+        android:id="@+id/btn_write"
+        android:layout_width="86dp"
+        android:layout_height="39dp"
+        android:backgroundTint="#676767"
+        android:text="입력"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextText"
+        app:layout_constraintEnd_toEndOf="@+id/rec_time"
+        app:layout_constraintStart_toEndOf="@+id/editTextText"
+        app:layout_constraintTop_toTopOf="@+id/editTextText" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="126dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="곡 제목"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/rec_time"
+        app:layout_constraintTop_toBottomOf="@+id/rsv_current" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec_time"
-        android:layout_width="240dp"
-        android:layout_height="372dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="234dp"
+        android:layout_height="276dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rsv_current" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
     <TextView
         android:id="@+id/rsv_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:text="동방예약"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_ch" />
+        app:layout_constraintTop_toBottomOf="@+id/pick_date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

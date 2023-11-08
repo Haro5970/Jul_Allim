@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
             setMainFragment(ClubReservationFragment(),"동방예약")
             setUnderbarColor(3)
         }
-
         binding.btn5.setOnClickListener {
             setMainFragment(ProfileFragment(), "프로필 설정")
             setUnderbarColor(5)
