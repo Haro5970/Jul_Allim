@@ -1,5 +1,6 @@
 package com.example.jul_allim
 
+import android.util.Log
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
 import kotlinx.coroutines.CoroutineScope

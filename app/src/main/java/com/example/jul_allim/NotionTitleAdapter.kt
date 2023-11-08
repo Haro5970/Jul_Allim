@@ -22,7 +22,7 @@ class NotionTitleAdapter(val notions: Array<Notion>,val JK: String)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Hoder {
         val binding = NotionPreviewBinding.inflate(LayoutInflater.from(parent.context))
-        return Hoder(binding,JK)
+        return Hoder(binding)
     }
 
     override fun onBindViewHolder(holder: Hoder, position: Int) {
@@ -31,7 +31,7 @@ class NotionTitleAdapter(val notions: Array<Notion>,val JK: String)
 
     override fun getItemCount() = notions.size
 
-    class Hoder(private val binding: NotionPreviewBinding,JK: String) :RecyclerView.ViewHolder(binding.root){
+    class Hoder(private val binding: NotionPreviewBinding) :RecyclerView.ViewHolder(binding.root){
         fun bind ( notion: Notion,JK: String){
 
             binding.notionContent.text = notion.preview
