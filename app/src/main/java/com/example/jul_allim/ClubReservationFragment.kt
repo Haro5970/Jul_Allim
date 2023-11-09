@@ -75,15 +75,10 @@ class ClubReservationFragment : Fragment() {
 
         val adapter = ReservationAdapter(reservations, selectedDate)
 
+        // 리사이클러뷰 어뎁터
         binding.recTime.adapter = adapter
+        // 아이템을 수직 방향으로 배치
         binding.recTime.layoutManager = LinearLayoutManager(context)
-
-        /*binding.pickDate.setOnDateChangedListener { _, year, month, dayOfMonth ->
-            val selectedDate = "${year}${String.format("%02d", month + 1)}${String.format("%02d", dayOfMonth)}"
-            val filteredReservations = reservations.filter { it.day == selectedDate }.toTypedArray()
-            adapter.reservations = filteredReservations
-            adapter.notifyDataSetChanged()
-        }*/
 
         binding.btnCh.setOnClickListener {
             val year = binding.pickDate.year
