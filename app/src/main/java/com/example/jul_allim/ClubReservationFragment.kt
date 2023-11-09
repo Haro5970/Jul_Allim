@@ -2,20 +2,15 @@ package com.example.jul_allim
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jul_allim.databinding.ActivityMainBinding
-import com.example.jul_allim.databinding.FragmentCalenderBinding
 import com.example.jul_allim.databinding.FragmentClubReservateBinding
-import com.example.jul_allim.databinding.FragmentNotionBinding
-import kotlinx.coroutines.launch
+
 
 class ClubReservationFragment : Fragment() {
 
@@ -32,7 +27,7 @@ class ClubReservationFragment : Fragment() {
     ): View? {
         val binding = FragmentClubReservateBinding.inflate(inflater,container,false)
 
-        // arraylistof-> 입력하면 추가되게만들기
+        //
         val reservations = arrayOf(
             Reservation("20231107", "09:00~10:00", "푸르던"),
             Reservation("20231107", "10:00~11:00", "푸르던"),
@@ -61,9 +56,8 @@ class ClubReservationFragment : Fragment() {
             Reservation("20231108", "20:00~21:00", ""),
         )
         val selectedYear = binding.pickDate.year
-        val selectedMonth = binding.pickDate.month + 1 // DatePicker의 month는 0부터 시작하므로 1을 더함
+        val selectedMonth = binding.pickDate.month + 1
         val selectedDay = binding.pickDate.dayOfMonth
-
         val selectedDate = "${selectedYear}${String.format("%02d", selectedMonth)}${String.format("%02d", selectedDay)}"
 
         val adapter = ReservationAdapter(reservations, selectedDate)
@@ -71,14 +65,13 @@ class ClubReservationFragment : Fragment() {
         binding.recTime.adapter = adapter
         binding.recTime.layoutManager = LinearLayoutManager(context)
 
-        binding.pickDate.setOnDateChangedListener { _, year, month, dayOfMonth ->
+        /*binding.pickDate.setOnDateChangedListener { _, year, month, dayOfMonth ->
             val selectedDate = "${year}${String.format("%02d", month + 1)}${String.format("%02d", dayOfMonth)}"
             val filteredReservations = reservations.filter { it.day == selectedDate }.toTypedArray()
             adapter.reservations = filteredReservations
             adapter.notifyDataSetChanged()
-        }
+        }*/
 
-        // val today = SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis())
         binding.btnCh.setOnClickListener {
             val year = binding.pickDate.year
             val month = binding.pickDate.month
@@ -88,6 +81,7 @@ class ClubReservationFragment : Fragment() {
             binding.rsvCurrent.visibility = View.VISIBLE
             binding.recTime.visibility = View.VISIBLE
 
+            // 20231101 형식으로 날짜 selectedDate에 저장하고 adapter에 비교함수 따라서 보이게 or 안보이게
             val selectedDate = "${year}${String.format("%02d", month + 1)}${String.format("%02d", dayOfMonth)}"
             val filteredReservations = reservations.filter { it.day == selectedDate }.toTypedArray()
             val adapter = ReservationAdapter(filteredReservations, selectedDate)

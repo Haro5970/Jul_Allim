@@ -3,7 +3,6 @@ package com.example.jul_allim
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jul_allim.databinding.ListTimeBinding
 
@@ -21,11 +20,11 @@ class ReservationAdapter(var reservations: Array<Reservation>, var selectedDate:
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val reservation = reservations[position]
 
-        // 현재 선택된 날짜와 예약의 날짜를 비교합니다.
+        // 선택 날짜랑 예약현황날짜 비교
         if (reservation.day == selectedDate) {
             holder.bind(reservation)
         } else {
-            // 현재 선택된 날짜와 예약의 날짜가 다르면 항목을 숨깁니다.
+            // 다르면 안 뜨게
             holder.itemView.visibility = View.GONE
         }
     }
