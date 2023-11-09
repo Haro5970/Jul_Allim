@@ -1,7 +1,6 @@
 package com.example.jul_allim
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -46,6 +45,10 @@ class MainActivity : AppCompatActivity() {
             setMainFragment(ClubReservationFragment(),"동방예약")
             setUnderbarColor(3)
         }
+        binding.btn4.setOnClickListener {
+            setMainFragment(MusicListFragment(),"곡리스트")
+            setUnderbarColor(4)
+        }
         binding.btn5.setOnClickListener {
             setMainFragment(ProfileFragment(), "프로필 설정")
             setUnderbarColor(5)
@@ -67,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         binding.textTitle.text = title
     }
 
+    // 하단버튼 색변경
     fun setUnderbarColor( btnN: Int){
 
         val btn_arr=arrayOf(binding.btn1,binding.btn2,binding.btn3,binding.btn4,binding.btn5)
