@@ -12,22 +12,24 @@
         android:id="@+id/title_jul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
         android:layout_marginTop="30dp"
         android:text="줄울림 공지"
         android:textSize="35sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/jul_list"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/jul_list"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
         android:background="@color/notion_table"
         android:overScrollMode="never"
-        app:layout_constraintStart_toStartOf="@+id/title_jul"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_jul" />
 
     <TextView
@@ -43,12 +45,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/kau_list"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
         android:background="@color/notion_table"
         android:nestedScrollingEnabled="false"
         android:overScrollMode="never"
+        app:layout_constraintEnd_toEndOf="@+id/jul_list"
         app:layout_constraintStart_toStartOf="@+id/jul_list"
         app:layout_constraintTop_toBottomOf="@+id/title_kau" />
 

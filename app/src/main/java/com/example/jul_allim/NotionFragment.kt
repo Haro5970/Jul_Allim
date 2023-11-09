@@ -35,14 +35,16 @@ class NotionFragment : Fragment() {
             }.join()
 
             // 줄울림 공지 리스트
-            binding.julList.layoutManager = LinearLayoutManager(binding.root.context)
-            binding.julList.adapter =
-                NotionTitleAdapter(jul_notions.copyOfRange(0, minOf(7, jul_notions.size)),"Jul")
+            binding.julList.apply {
+                layoutManager = LinearLayoutManager(binding.root.context)
+                adapter = NotionTitleAdapter(jul_notions.copyOfRange(0, minOf(10, jul_notions.size)),"Jul")
+            }
 
             // 학교 공지 리스트
-            binding.kauList.layoutManager = LinearLayoutManager(binding.root.context)
-            binding.kauList.adapter =
-                NotionTitleAdapter(kau_notions.copyOfRange(0, minOf(5, kau_notions.size)),"Kau")
+            binding.kauList.apply {
+                layoutManager = LinearLayoutManager(binding.root.context)
+                adapter = NotionTitleAdapter(kau_notions.copyOfRange(0, minOf(7, kau_notions.size)),"Kau")
+            }
 
 
             // +버튼 클릭
