@@ -1,7 +1,6 @@
 package com.example.jul_allim
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -45,6 +44,10 @@ class MainActivity : AppCompatActivity() {
         binding.btn3.setOnClickListener {
             setMainFragment(ClubReservationFragment(),"동방예약")
             setUnderbarColor(3)
+        }
+        binding.btn4.setOnClickListener {
+            setMainFragment(MusicListFragment(),"곡리스트")
+            setUnderbarColor(4)
         }
         binding.btn5.setOnClickListener {
             setMainFragment(ProfileFragment(), "프로필 설정")
