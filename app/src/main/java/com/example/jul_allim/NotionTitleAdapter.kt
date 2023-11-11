@@ -18,20 +18,20 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class NotionTitleAdapter(val notions: Array<Notion>,val JK: String)
-    : RecyclerView.Adapter<NotionTitleAdapter.Hoder>(){
+    : RecyclerView.Adapter<NotionTitleAdapter.Holder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Hoder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = NotionPreviewBinding.inflate(LayoutInflater.from(parent.context))
-        return Hoder(binding)
+        return Holder(binding)
     }
 
-    override fun onBindViewHolder(holder: Hoder, position: Int) {
+    override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.bind(notions[position],JK)
     }
 
     override fun getItemCount() = notions.size
 
-    class Hoder(private val binding: NotionPreviewBinding) :RecyclerView.ViewHolder(binding.root){
+    class Holder(private val binding: NotionPreviewBinding) :RecyclerView.ViewHolder(binding.root){
         fun bind ( notion: Notion,JK: String){
 
             binding.notionContent.text = notion.preview

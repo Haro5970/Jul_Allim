@@ -37,13 +37,13 @@ class NotionFragment : Fragment() {
             // 줄울림 공지 리스트
             binding.julList.apply {
                 layoutManager = LinearLayoutManager(binding.root.context)
-                adapter = NotionTitleAdapter(jul_notions.copyOfRange(0, minOf(10, jul_notions.size)),"Jul")
+                adapter = NotionTitleAdapter(jul_notions.copyOfRange(0, minOf(7, jul_notions.size)),"Jul")
             }
 
             // 학교 공지 리스트
             binding.kauList.apply {
                 layoutManager = LinearLayoutManager(binding.root.context)
-                adapter = NotionTitleAdapter(kau_notions.copyOfRange(0, minOf(7, kau_notions.size)),"Kau")
+                adapter = NotionTitleAdapter(kau_notions.copyOfRange(0, minOf(5, kau_notions.size)),"Kau")
             }
 
 
