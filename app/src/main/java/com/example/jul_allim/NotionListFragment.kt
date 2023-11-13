@@ -7,10 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jul_allim.databinding.FragmentNotionListBinding
+import com.example.jul_allim.viewmodel.NotionViewModel
 import com.google.android.gms.common.api.internal.LifecycleFragment
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
@@ -27,7 +29,7 @@ import kotlinx.coroutines.withContext
 import kotlin.reflect.typeOf
 
 class NotionListFragment(val title: String, val Jul_Kau: String) : Fragment() {
-
+    val viewmodel: NotionViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -40,7 +42,7 @@ class NotionListFragment(val title: String, val Jul_Kau: String) : Fragment() {
 
         var notions: Array<Notion> = arrayOf()
         lifecycleScope.launch {
-            notions = getNotions(Jul_Kau)
+            notions = viewmodel.getNotions(Jul_Kau)!!
 
 
             Log.d("firebase1", notions.toString())
