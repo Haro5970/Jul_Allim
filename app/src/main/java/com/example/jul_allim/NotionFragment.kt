@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,14 +48,14 @@ class NotionFragment : Fragment() {
                 adapter = NotionTitleAdapter(
                     viewmodel.notionK.value!!.copyOfRange(
                         0,
-                        minOf(7, viewmodel.notionK.value!!.size)
+                        minOf(5, viewmodel.notionK.value!!.size)
                     ), "Kau"
                 )
             }
         }
 
 
-        // +버튼 클릭
+        // +버튼
         binding.btnJul.setOnClickListener {
             MainActivity.getInstance()
                 ?.setMainFragment(NotionListFragment("줄울림 공지", "Jul"), "공지사항")
@@ -64,7 +65,10 @@ class NotionFragment : Fragment() {
                 ?.setMainFragment(NotionListFragment("학교 공지", "Kau"), "공지사항")
         }
 
-        // 큰+버튼 클릭
+        // 큰+버튼
+        if(!MainActivity.IsAdmin){
+            binding.btnNew.isInvisible = true
+        }
         binding.btnNew.setOnClickListener {
             MainActivity.getInstance()
                 ?.setMainFragment(WriteNotionFragment(), "새 공지사항")

@@ -20,11 +20,11 @@ class NotionRepository {
                 val arrJ: ArrayList<Notion>  = arrayListOf()
                 val arrK: ArrayList<Notion>  = arrayListOf()
                 Log.d("getSnapshot",snapshot.value.toString())
-                (snapshot.value as ArrayList<HashMap<String,String>>).forEach {
+                (snapshot.value as ArrayList<HashMap<String,Any>>).forEach {
                     if(it.get("id")!!.toString().get(0)=='J'){
-                        arrJ.add(Notion(it.get("id")!!.toString(),it.get("content")!!.toString()))}
+                        arrJ.add(Notion(map=it)) }
                     else{
-                        arrK.add(Notion(it.get("id")!!.toString(),it.get("content")!!.toString()))}
+                        arrK.add(Notion(map=it)) }
                     }
                 arrJ.sortBy{it.id}; arrJ.reverse()
                 arrK.sortBy{it.id}; arrK.reverse()
@@ -37,7 +37,7 @@ class NotionRepository {
 
     fun removeNotion(targetNotionID: String){
         NotionRef.get().addOnSuccessListener {
-            val data = it.value as ArrayList<HashMap<String,String>>
+            val data = it.value as ArrayList<HashMap<String,Any>>
             data.removeIf{
                 it.get("id")==targetNotionID
             }

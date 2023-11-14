@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     }
     companion object{
         private var instance:MainActivity? = null
+        val IsAdmin: Boolean = true
         fun getInstance(): MainActivity? {
             return instance
         }

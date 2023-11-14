@@ -33,7 +33,6 @@ class WriteNotionFragment : Fragment() {
 
             viewmodel.addNotions(binding.writespace.text.toString(),
                 if(binding.swichJK.isChecked) "Kau" else "Jul" )
-
             MainActivity.getInstance()
                 ?.setMainFragment(NotionFragment(),"공지사항")
         }
