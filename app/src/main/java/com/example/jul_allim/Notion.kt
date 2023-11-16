@@ -3,15 +3,6 @@ package com.example.jul_allim
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
-import android.util.Log
-import com.example.jul_allim.repository.getBitmapFromString
-import com.google.firebase.Firebase
-import com.google.firebase.database.database
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-
 class Notion(id_: String="", content_: String="",img_: Array<String> =arrayOf(), map: HashMap<String,Any>? = null){
     val mapdata: HashMap<String,Any>
     init{
@@ -35,4 +26,9 @@ class Notion(id_: String="", content_: String="",img_: Array<String> =arrayOf(),
 
     val preview: String=" ● ${content.subSequence(0,minOf(10,content.length)).filter { it!='\n' }}..."
 
+
+    fun getBitmapFromString(string: String): Bitmap {
+        val imageBytes = Base64.decode(string, 0)
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+    }
 }

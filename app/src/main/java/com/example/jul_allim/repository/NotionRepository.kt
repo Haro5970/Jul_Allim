@@ -1,10 +1,5 @@
 package com.example.jul_allim.repository
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.util.Base64
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.jul_allim.Notion
 import com.google.firebase.Firebase
@@ -55,9 +50,4 @@ class NotionRepository {
             )
         }
     }
-}
-
-fun getBitmapFromString(string: String): Bitmap {
-    val imageBytes = Base64.decode(string, 0)
-    return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
 }
