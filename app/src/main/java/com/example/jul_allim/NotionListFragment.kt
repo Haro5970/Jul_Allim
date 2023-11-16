@@ -40,22 +40,14 @@ class NotionListFragment(val title: String, val Jul_Kau: String) : Fragment() {
     ): View? {
         val binding = FragmentNotionListBinding.inflate(inflater, container, false)
 
-        var notions: Array<Notion> = arrayOf()
-        lifecycleScope.launch {
-            notions = viewmodel.getNotions(Jul_Kau)!!
-
-
-            Log.d("firebase1", notions.toString())
-            binding.notionTitle.text = title
-
+        val observeNotions = if(Jul_Kau=="Jul") viewmodel.notionJ else viewmodel.notionK
+        observeNotions.observe(viewLifecycleOwner){
             binding.notionList.apply{
-                adapter = NotionTitleAdapter(notions,Jul_Kau)
+                adapter = NotionTitleAdapter(viewmodel.notionJ.value!!,Jul_Kau)
                 layoutManager = LinearLayoutManager(binding.root.context)
             }
         }
-
-
-        Log.d("firebase2", notions.toString())
+        binding.notionTitle.text = title
 
         return binding.root
 

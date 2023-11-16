@@ -22,7 +22,7 @@ class NotionViewModel: ViewModel() {
 
     fun getNotions(JK: String): Array<Notion>? = if(JK=="Jul") NotionsJ.value else NotionsK.value
 
-    fun addNotions(content: String, JK: String){
+    fun addNotions(content: String, JK: String, imgs: Array<String>){
         val today = SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis())
         val notionlist = getNotions(JK)!!.filter{
             it.id.startsWith(JK[0]+today)
@@ -30,7 +30,7 @@ class NotionViewModel: ViewModel() {
         val id = if(notionlist.size==0) JK[0]+today+"00"
                     else JK[0]+(notionlist[0].id.substring(1).toInt()+1).toString()
 
-        repository.addNotion(id,content)
+        repository.addNotion(id,content,imgs)
     }
 
     fun removeNotion(notion: Notion){

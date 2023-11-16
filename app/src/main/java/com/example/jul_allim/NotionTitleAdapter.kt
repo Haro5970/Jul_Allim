@@ -26,16 +26,13 @@ class NotionTitleAdapter(var notions: Array<Notion>,val JK: String)
             binding.notionContent.text = notion.preview
             binding.notionId.text = notion.id
 
-
-            binding.root.setOnClickListener{
-                toNotion(notion)
+            binding.root.setOnClickListener {
+                MainActivity.getInstance()?.setMainFragment(NotionViewFragment(notion), "공지사항")
             }
             if(MainActivity.IsAdmin){
                 binding.root.setOnLongClickListener {
                     NotionViewModel().removeNotion(notion)
-
                     true
-
                 }
             }
         }

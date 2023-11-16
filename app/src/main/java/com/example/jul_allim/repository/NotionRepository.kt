@@ -1,5 +1,8 @@
 package com.example.jul_allim.repository
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,7 +22,6 @@ class NotionRepository {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val arrJ: ArrayList<Notion>  = arrayListOf()
                 val arrK: ArrayList<Notion>  = arrayListOf()
-                Log.d("getSnapshot",snapshot.value.toString())
                 (snapshot.value as ArrayList<HashMap<String,Any>>).forEach {
                     if(it.get("id")!!.toString().get(0)=='J'){
                         arrJ.add(Notion(map=it)) }
@@ -45,12 +47,17 @@ class NotionRepository {
         }
     }
 
-    fun addNotion(id: String, content: String){
+    fun addNotion(id: String, content: String, imgs: Array<String>){
         NotionRef.get().addOnSuccessListener {
             val cnt = (it.value as ArrayList<*>).size
             NotionRef.child(cnt.toString()).setValue(
-                hashMapOf("id" to id,"content" to content)
+                hashMapOf("id" to id,"content" to content,"imgs" to imgs.toList())
             )
         }
     }
+}
+
+fun getBitmapFromString(string: String): Bitmap {
+    val imageBytes = Base64.decode(string, 0)
+    return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
 }

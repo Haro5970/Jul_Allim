@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     }
     companion object{
         private var instance:MainActivity? = null
-        val IsAdmin: Boolean = true
+        var IsAdmin: Boolean = false
         fun getInstance(): MainActivity? {
             return instance
         }
@@ -30,8 +30,6 @@ class MainActivity : AppCompatActivity() {
         setMainFragment(NotionFragment(),"공지사항")
         setUnderbarColor(1)
         setContentView(binding.root)
-
-
 
             // 하단바 버튼 클릭시 페이지 이동
         binding.btn1.setOnClickListener {
@@ -53,6 +51,16 @@ class MainActivity : AppCompatActivity() {
         binding.btn5.setOnClickListener {
             setMainFragment(ProfileFragment(), "프로필 설정")
             setUnderbarColor(5)
+        }
+
+        // 임시 관리자 권한 설정
+        var cnt: Int = 0
+        binding.Logo.setOnClickListener {
+            cnt += 1
+            if(cnt == 5){
+                IsAdmin = !IsAdmin
+                cnt = 0
+            }
         }
 
     }
@@ -86,7 +94,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    // 캘린더뷰
-
-
 }

@@ -1,6 +1,10 @@
 package com.example.jul_allim
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.util.Log
+import com.example.jul_allim.repository.getBitmapFromString
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +19,7 @@ class Notion(id_: String="", content_: String="",img_: Array<String> =arrayOf(),
             mapdata = hashMapOf(
                 "id" to id_,
                 "content" to content_,
-                "img" to img_
+                "imgs" to img_
             )
         }
         else{
@@ -23,12 +27,12 @@ class Notion(id_: String="", content_: String="",img_: Array<String> =arrayOf(),
         }
     }
 
+    // 각 데이터는 mapdata에서 get() 해서 사용
     val id: String get() = mapdata.get("id") as String
     val content: String get() = mapdata.get("content") as String
+    val imgs: Array<Bitmap> get() = if(mapdata.keys.contains("imgs")) Array<Bitmap>( (mapdata.get("imgs") as ArrayList<String>).size,{i-> getBitmapFromString( (mapdata.get("imgs") as ArrayList<String>).get(i) ) })
+                                    else arrayOf()
 
     val preview: String=" ● ${content.subSequence(0,minOf(10,content.length)).filter { it!='\n' }}..."
 
-}
-fun toNotion(notion: Notion){
-    MainActivity.getInstance()?.setMainFragment(NotionViewFragment(notion),"공지사항")
 }
