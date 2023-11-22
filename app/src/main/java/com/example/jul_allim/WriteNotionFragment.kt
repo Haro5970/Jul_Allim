@@ -104,7 +104,7 @@ class WriteNotionFragment : Fragment() {
 
     fun Bitmap.ToString(): String {
         val baos = ByteArrayOutputStream()
-        this.compress(Bitmap.CompressFormat.PNG, 100, baos)
+        this.compress(Bitmap.CompressFormat.JPEG, 10, baos)
         val b = baos.toByteArray()
         return Base64.encodeToString(b, Base64.DEFAULT)
     }
