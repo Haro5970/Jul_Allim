@@ -14,9 +14,9 @@ import com.example.jul_allim.databinding.FragmentClubReservateBinding
 
 class ClubReservationFragment : Fragment() {
 
-    lateinit var binding: ActivityMainBinding
+    var binding: ActivityMainBinding? = null
     lateinit var adapter: ReservationAdapter // 전역 변수로 선언
-    private var selectedTime: String? = null
+    // private var selectedTime: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,44 +32,31 @@ class ClubReservationFragment : Fragment() {
         val binding = FragmentClubReservateBinding.inflate(inflater,container,false)
 
         val reservations = arrayOf(
-            Reservation("20231107", "09:00~10:00", "푸르던"),
-            Reservation("20231107", "10:00~11:00", "푸르던"),
-            Reservation("20231107", "11:00~12:00", "기댈곳"),
-            Reservation("20231107", "12:00~13:00", "기댈곳"),
-            Reservation("20231107", "13:00~14:00", ""),
-            Reservation("20231107", "14:00~15:00", ""),
-            Reservation("20231107", "15:00~16:00", "wheniwasyourman"),
-            Reservation("20231107", "16:00~17:00", "wheniwasyourman"),
-            Reservation("20231107", "17:00~18:00", ""),
-            Reservation("20231107", "18:00~19:00", ""),
-            Reservation("20231107", "19:00~20:00", ""),
-            Reservation("20231107", "20:00~21:00", ""),
+            Reservation("20231122", "09:00~10:00", ""),
+            Reservation("20231122", "10:00~11:00", ""),
+            Reservation("20231122", "11:00~12:00", "깊은 밤을 날아서"),
+            Reservation("20231122", "12:00~13:00", "깊은 밤을 날아서"),
+            Reservation("20231122", "13:00~14:00", ""),
+            Reservation("20231122", "14:00~15:00", ""),
+            Reservation("20231122", "15:00~16:00", ""),
+            Reservation("20231122", "16:00~17:00", "비행기"),
+            Reservation("20231122", "17:00~18:00", "비행기"),
+            Reservation("20231122", "18:00~19:00", ""),
+            Reservation("20231122", "19:00~20:00", ""),
+            Reservation("20231122", "20:00~21:00", ""),
 
-            Reservation("20231108", "09:00~10:00", ""),
-            Reservation("20231108", "10:00~11:00", ""),
-            Reservation("20231108", "11:00~12:00", ""),
-            Reservation("20231108", "12:00~13:00", "살아가는거야"),
-            Reservation("20231108", "13:00~14:00", "살아가는거야"),
-            Reservation("20231108", "14:00~15:00", ""),
-            Reservation("20231108", "15:00~16:00", "안티프리즈"),
-            Reservation("20231108", "16:00~17:00", "안티프리즈"),
-            Reservation("20231108", "17:00~18:00", ""),
-            Reservation("20231108", "18:00~19:00", ""),
-            Reservation("20231108", "19:00~20:00", ""),
-            Reservation("20231108", "20:00~21:00", ""),
-
-            Reservation("20231109", "09:00~10:00", "편지"),
-            Reservation("20231109", "10:00~11:00", "편지"),
-            Reservation("20231109", "11:00~12:00", ""),
-            Reservation("20231109", "12:00~13:00", ""),
-            Reservation("20231109", "13:00~14:00", ""),
-            Reservation("20231109", "14:00~15:00", ""),
-            Reservation("20231109", "15:00~16:00", "사랑하기 때문에"),
-            Reservation("20231109", "16:00~17:00", "사랑하기 때문에"),
-            Reservation("20231109", "17:00~18:00", ""),
-            Reservation("20231109", "18:00~19:00", ""),
-            Reservation("20231109", "19:00~20:00", ""),
-            Reservation("20231109", "20:00~21:00", ""),
+            Reservation("20231123", "09:00~10:00", "편지"),
+            Reservation("20231123", "10:00~11:00", "편지"),
+            Reservation("20231123", "11:00~12:00", ""),
+            Reservation("20231123", "12:00~13:00", ""),
+            Reservation("20231123", "13:00~14:00", ""),
+            Reservation("20231123", "14:00~15:00", ""),
+            Reservation("20231123", "15:00~16:00", "사랑하기 때문에"),
+            Reservation("20231123", "16:00~17:00", "사랑하기 때문에"),
+            Reservation("20231123", "17:00~18:00", ""),
+            Reservation("20231123", "18:00~19:00", ""),
+            Reservation("20231123", "19:00~20:00", ""),
+            Reservation("20231123", "20:00~21:00", ""),
         )
         val selectedYear = binding.pickDate.year
         val selectedMonth = binding.pickDate.month + 1
@@ -116,5 +103,3 @@ class ClubReservationFragment : Fragment() {
     }
 
 }
-
-
