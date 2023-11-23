@@ -50,13 +50,13 @@
         android:layout_height="39dp"
         android:backgroundTint="#676767"
         android:text="입력"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextText"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_write"
         app:layout_constraintEnd_toEndOf="@+id/rec_time"
-        app:layout_constraintStart_toEndOf="@+id/editTextText"
-        app:layout_constraintTop_toTopOf="@+id/editTextText" />
+        app:layout_constraintStart_toEndOf="@+id/txt_write"
+        app:layout_constraintTop_toTopOf="@+id/txt_write" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/txt_write"
         android:layout_width="126dp"
         android:layout_height="46dp"
         android:layout_marginTop="15dp"
@@ -75,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_write" />
 
     <TextView
         android:id="@+id/rsv_current"

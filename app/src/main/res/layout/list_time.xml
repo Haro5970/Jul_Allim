@@ -12,23 +12,24 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="09:00~10:00"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/txt_musictitle"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="50dp"
+        android:layout_width="134dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="80dp"
         android:text="푸르던"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txt_time"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52" />
-
+        app:layout_constraintVertical_bias="0.38" />
 
     <CheckBox
         android:id="@+id/btn_ms"
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:text="선택"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txt_time"

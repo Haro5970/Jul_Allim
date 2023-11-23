@@ -15,11 +15,15 @@ import com.example.jul_allim.databinding.FragmentClubReservateBinding
 class ClubReservationFragment : Fragment() {
 
     lateinit var binding: ActivityMainBinding
+    lateinit var adapter: ReservationAdapter // 전역 변수로 선언
+    private var selectedTime: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
     }
 
+    private var enteredTitle: String = ""
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +31,6 @@ class ClubReservationFragment : Fragment() {
     ): View? {
         val binding = FragmentClubReservateBinding.inflate(inflater,container,false)
 
-        //
         val reservations = arrayOf(
             Reservation("20231107", "09:00~10:00", "푸르던"),
             Reservation("20231107", "10:00~11:00", "푸르던"),
@@ -73,7 +76,7 @@ class ClubReservationFragment : Fragment() {
         val selectedDay = binding.pickDate.dayOfMonth
         val selectedDate = "${selectedYear}${String.format("%02d", selectedMonth)}${String.format("%02d", selectedDay)}"
 
-        val adapter = ReservationAdapter(reservations, selectedDate)
+        adapter = ReservationAdapter(reservations, selectedDate)
 
         // 리사이클러뷰 어뎁터
         binding.recTime.adapter = adapter
@@ -92,13 +95,26 @@ class ClubReservationFragment : Fragment() {
             // 20231101 형식으로 날짜 selectedDate에 저장하고 adapter에 비교함수 따라서 보이게 or 안보이게
             val selectedDate = "${year}${String.format("%02d", month + 1)}${String.format("%02d", dayOfMonth)}"
             val filteredReservations = reservations.filter { it.day == selectedDate }.toTypedArray()
-            val adapter = ReservationAdapter(filteredReservations, selectedDate)
+            adapter = ReservationAdapter(filteredReservations, selectedDate)
             binding.recTime.adapter = adapter
         }
 
+        binding.btnWrite.setOnClickListener {
+            adapter.updateMusictitles(binding)
+            val year = binding.pickDate.year
+            val month = binding.pickDate.month
+            val dayOfMonth = binding.pickDate.dayOfMonth
+
+            val selectedDate = "${year}${String.format("%02d", month + 1)}${String.format("%02d", dayOfMonth)}"
+
+            val newreservations = adapter.getNewReservation(enteredTitle)
+            this.adapter = ReservationAdapter(newreservations, selectedDate)
+            binding.recTime.adapter = adapter
+        }
 
         return binding.root
     }
 
 }
+
 
