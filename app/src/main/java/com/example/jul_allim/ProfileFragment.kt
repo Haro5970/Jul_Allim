@@ -5,41 +5,53 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.jul_allim.databinding.FragmentProfileBinding
+import com.example.jul_allim.viewmodel.StudentVM
 
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    //어댑터 선언
+    private lateinit var adapter: StudentsAdapter
+    private val viewModel by lazy { ViewModelProvider(this).get(StudentVM::class.java) }
+
+    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        val binding = FragmentProfileBinding.inflate(inflater, container, false)
+        context?.let {
+            adapter = StudentsAdapter()
+        }
+
+        // 리사이클러뷰 레이아웃매니저, 어댑터 설정
+        binding.recStudents.layoutManager = LinearLayoutManager(context)
+        binding.recStudents.adapter = adapter
+
+        //데이터 반영
+        observeData()
+
+        //수정하기
+        binding.editbutton.setOnClickListener {
+            MainActivity.getInstance()
+                ?.setMainFragment(ProfileEditFragment(), "회원 정보 수정")
+        }
+
+        return binding.root
     }
 
-    companion object {
-
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun observeData() {
+        viewModel.fetchData().observe(viewLifecycleOwner, Observer {
+            adapter.setListData(it)
+            adapter.notifyDataSetChanged()
+        })
     }
 }

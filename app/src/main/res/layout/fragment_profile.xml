@@ -33,15 +33,21 @@
             app:cardCornerRadius="100dp"
             app:cardElevation="0dp" />
 
+
         <ImageView
             android:id="@+id/imageView14"
-            android:layout_width="match_parent"
-            android:layout_height="151dp"
+            android:layout_width="210dp"
+            android:layout_height="match_parent"
             android:adjustViewBounds="true"
-            android:background="@drawable/item_background"
             android:scaleType="fitCenter"
             android:src="@drawable/profile" />
 
+        <TextView
+            android:id="@+id/blank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="  " />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -51,15 +57,15 @@
             android:scrollbarStyle="insideInset">
 
             <TextView
-                android:id="@+id/textView23"
+                android:id="@+id/txtname"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="25dp"
                 android:text="배별하" />
 
             <TextView
-                android:id="@+id/textView24"
+                android:id="@+id/txtnum"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="22dp"
                 android:text="22학번" />
 
             <TextView
@@ -69,19 +75,19 @@
                 android:text="35기" />
 
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/txtss"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="리코더" />
 
             <TextView
-                android:id="@+id/textView27"
+                android:id="@+id/txtline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="웅냥냥" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/editbutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#676767"
@@ -93,6 +99,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_students"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="300dp"
@@ -109,10 +116,11 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="줄울림 35기 부원 "
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
