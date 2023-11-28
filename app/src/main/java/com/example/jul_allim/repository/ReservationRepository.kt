@@ -1,6 +1,5 @@
 package com.example.jul_allim.repository
 
-import com.example.jul_allim.Reservation
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -8,11 +7,24 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 
 class ReservationRepository {
-    private val database = Firebase.database
-    private val reservationsRef = database.getReference("reservations")
+    // private val reservations = mutableListOf<Reservation>()
 
-    fun getReservationsForDateAndTime(date: String, time: String, onReservationsFetched: (List<String>) -> Unit) {
-        reservationsRef.child(date).child(time).child("musictitle")
+    /*
+    fun getReservations(): List<Reservation> {
+        return reservations
+    }
+
+    fun addReservation(reservation: Reservation) {
+        reservations.add(reservation)
+    }
+
+     */
+
+    private val database = Firebase.database
+    private val ReservationsRef = database.getReference("reservations")
+
+    fun observeReservation(date: String, time: String, onReservationsFetched: (List<String>) -> Unit) {
+        ReservationsRef.child(date).child(time).child("musictitle")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val musicTitles: MutableList<String> = mutableListOf()
@@ -30,4 +42,7 @@ class ReservationRepository {
                 }
             })
     }
+
+
+
 }

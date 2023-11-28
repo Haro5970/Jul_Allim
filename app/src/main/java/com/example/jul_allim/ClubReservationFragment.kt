@@ -10,20 +10,20 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jul_allim.databinding.ActivityMainBinding
 import com.example.jul_allim.databinding.FragmentClubReservateBinding
-
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class ClubReservationFragment : Fragment() {
 
+
     var binding: ActivityMainBinding? = null
     lateinit var adapter: ReservationAdapter // 전역 변수로 선언
-    // private var selectedTime: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private var enteredTitle: String = ""
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,33 +31,27 @@ class ClubReservationFragment : Fragment() {
     ): View? {
         val binding = FragmentClubReservateBinding.inflate(inflater,container,false)
 
-        val reservations = arrayOf(
-            Reservation("20231122", "09:00~10:00", ""),
-            Reservation("20231122", "10:00~11:00", ""),
-            Reservation("20231122", "11:00~12:00", "깊은 밤을 날아서"),
-            Reservation("20231122", "12:00~13:00", "깊은 밤을 날아서"),
-            Reservation("20231122", "13:00~14:00", ""),
-            Reservation("20231122", "14:00~15:00", ""),
-            Reservation("20231122", "15:00~16:00", ""),
-            Reservation("20231122", "16:00~17:00", "비행기"),
-            Reservation("20231122", "17:00~18:00", "비행기"),
-            Reservation("20231122", "18:00~19:00", ""),
-            Reservation("20231122", "19:00~20:00", ""),
-            Reservation("20231122", "20:00~21:00", ""),
+        val startDate = LocalDate.of(2023, 1, 1) // 시작 날짜 설정
+        val endDate = LocalDate.of(2023, 12, 31) // 종료 날짜 설정
 
-            Reservation("20231123", "09:00~10:00", "편지"),
-            Reservation("20231123", "10:00~11:00", "편지"),
-            Reservation("20231123", "11:00~12:00", ""),
-            Reservation("20231123", "12:00~13:00", ""),
-            Reservation("20231123", "13:00~14:00", ""),
-            Reservation("20231123", "14:00~15:00", ""),
-            Reservation("20231123", "15:00~16:00", "사랑하기 때문에"),
-            Reservation("20231123", "16:00~17:00", "사랑하기 때문에"),
-            Reservation("20231123", "17:00~18:00", ""),
-            Reservation("20231123", "18:00~19:00", ""),
-            Reservation("20231123", "19:00~20:00", ""),
-            Reservation("20231123", "20:00~21:00", ""),
-        )
+        val dates = mutableListOf<String>()
+        var currentDate = startDate
+
+        while (!currentDate.isAfter(endDate)) {
+            dates.add(currentDate.format(DateTimeFormatter.BASIC_ISO_DATE))
+            currentDate = currentDate.plusDays(1)
+        }
+
+        val times = arrayOf("09:00~10:00", "10:00~11:00", "11:00~12:00", "12:00~13:00", "13:00~14:00", "14:00~15:00", "15:00~16:00", "16:00~17:00", "17:00~18:00", "18:00~19:00", "19:00~20:00", "20:00~21:00") // 원하는 시간을 추가하십시오.
+
+        val reservations = mutableListOf<Reservation>()
+
+        for (date in dates) {
+            for (time in times) {
+                reservations.add(Reservation(date, time, ""))
+            }
+        }
+
         val selectedYear = binding.pickDate.year
         val selectedMonth = binding.pickDate.month + 1
         val selectedDay = binding.pickDate.dayOfMonth
@@ -81,22 +75,21 @@ class ClubReservationFragment : Fragment() {
 
             // 20231101 형식으로 날짜 selectedDate에 저장하고 adapter에 비교함수 따라서 보이게 or 안보이게
             val selectedDate = "${year}${String.format("%02d", month + 1)}${String.format("%02d", dayOfMonth)}"
-            val filteredReservations = reservations.filter { it.day == selectedDate }.toTypedArray()
+            val filteredReservations = reservations.filter { it.day == selectedDate }.toMutableList()
             adapter = ReservationAdapter(filteredReservations, selectedDate)
             binding.recTime.adapter = adapter
         }
 
         binding.btnWrite.setOnClickListener {
             adapter.updateMusictitles(binding)
-            val year = binding.pickDate.year
-            val month = binding.pickDate.month
-            val dayOfMonth = binding.pickDate.dayOfMonth
 
-            val selectedDate = "${year}${String.format("%02d", month + 1)}${String.format("%02d", dayOfMonth)}"
+            // val enteredTitle = binding.txtWrite.text.toString()
 
-            val newreservations = adapter.getNewReservation(enteredTitle)
-            this.adapter = ReservationAdapter(newreservations, selectedDate)
-            binding.recTime.adapter = adapter
+            // reservations.add(Reservation(selectedDate, selectedDate, enteredTitle))
+
+            // val newreservations = adapter.getNewReservation(enteredTitle).toMutableList()
+            // this.adapter = ReservationAdapter(newreservations, selectedDate)
+            // binding.recTime.adapter = adapter
         }
 
         return binding.root
