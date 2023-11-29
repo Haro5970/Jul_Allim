@@ -55,5 +55,5 @@
         app:layout_constraintEnd_toEndOf="@+id/noticeView"
         app:layout_constraintStart_toStartOf="@+id/noticeView"
         app:layout_constraintTop_toTopOf="@+id/noticeView"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/julullim_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

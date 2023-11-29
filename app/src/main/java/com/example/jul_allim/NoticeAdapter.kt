@@ -12,7 +12,7 @@ class NoticeAdapter(val notices: Array<Notice>,val viewModel: NoticeViewModel ):
     class Holder(val binding: NoticePreviewBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(notice: Notice,viewModel: NoticeViewModel) {
             binding.noticeId.text = notice.id
-            binding.noticeLines.text = notice.lines.subSequence(0,minOf(15,notice.lines.length))
+            binding.noticeLines.text = notice.lines.subSequence(0,minOf(15,notice.lines.length)).filter { it!='\n' }
 
             binding.root.setOnClickListener{
                 MainActivity.getInstance()
