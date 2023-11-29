@@ -3,10 +3,9 @@ package com.example.jul_allim.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.jul_allim.Notion
-import com.example.jul_allim.repository.NotionRepository
 import java.text.SimpleDateFormat
 
+/*
 class NotionViewModel: ViewModel() {
     private val repository = NotionRepository()
 
@@ -38,3 +37,4 @@ class NotionViewModel: ViewModel() {
     }
 
 }
+*/

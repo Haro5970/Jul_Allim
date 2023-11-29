@@ -5,11 +5,10 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NotionViewFragment">
+    tools:context=".NoticeViewFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/notionView"
+        android:id="@+id/noticeView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
@@ -17,13 +16,13 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="5dp"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/notionImgs"
+        app:layout_constraintBottom_toTopOf="@+id/noticeImgs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/notionId"
+        android:id="@+id/noticeId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
@@ -34,14 +33,14 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notionImgs"
+        android:id="@+id/noticeImgs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:background="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/notionId"
-        app:layout_constraintEnd_toEndOf="@+id/notionView"
-        app:layout_constraintStart_toStartOf="@+id/notionView">
+        app:layout_constraintBottom_toTopOf="@+id/noticeId"
+        app:layout_constraintEnd_toEndOf="@+id/noticeView"
+        app:layout_constraintStart_toStartOf="@+id/noticeView">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -52,10 +51,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/notionImgs"
-        app:layout_constraintEnd_toEndOf="@+id/notionView"
-        app:layout_constraintStart_toStartOf="@+id/notionView"
-        app:layout_constraintTop_toTopOf="@+id/notionView"
+        app:layout_constraintBottom_toTopOf="@+id/noticeImgs"
+        app:layout_constraintEnd_toEndOf="@+id/noticeView"
+        app:layout_constraintStart_toStartOf="@+id/noticeView"
+        app:layout_constraintTop_toTopOf="@+id/noticeView"
         app:srcCompat="@drawable/ic_launcher_foreground" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

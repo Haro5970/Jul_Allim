@@ -4,13 +4,14 @@ import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.jul_allim.databinding.NotionImgBinding
+import com.example.jul_allim.databinding.NoticeImgBinding
 
-class NotionIMGAdapter(val imgs: Array<Bitmap>, val operation:((Bitmap)->Unit)? =null):
-    RecyclerView.Adapter<NotionIMGAdapter.Holder>() {
+
+class NoticeImageAdapter(val imgs: Array<Bitmap>, val operation:((Bitmap)->Unit)? =null):
+    RecyclerView.Adapter<NoticeImageAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val binding = NotionImgBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = NoticeImgBinding.inflate(LayoutInflater.from(parent.context))
         return Holder(binding)
     }
 
@@ -20,7 +21,7 @@ class NotionIMGAdapter(val imgs: Array<Bitmap>, val operation:((Bitmap)->Unit)? 
 
     override fun getItemCount() = imgs.size
 
-    class Holder(private val binding: NotionImgBinding) :RecyclerView.ViewHolder(binding.root){
+    class Holder(private val binding: NoticeImgBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind (img: Bitmap, operation: ((Bitmap) -> Unit)?){
             binding.imageView.setImageBitmap(img)
             binding.imageView.setOnClickListener{

@@ -1,13 +1,12 @@
 package com.example.jul_allim.repository
 
 import androidx.lifecycle.MutableLiveData
-import com.example.jul_allim.Notion
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
-
+/*
 class NotionRepository {
     val database = Firebase.database
     val NotionRef = database.getReference("Notion")
@@ -51,3 +50,4 @@ class NotionRepository {
         }
     }
 }
+*/

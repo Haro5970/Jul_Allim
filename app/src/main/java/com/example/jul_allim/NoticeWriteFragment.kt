@@ -1,6 +1,6 @@
 package com.example.jul_allim
 
-import android.app.Activity.RESULT_OK
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -19,42 +19,35 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.jul_allim.databinding.FragmentWriteNotionBinding
-import com.example.jul_allim.viewmodel.NotionViewModel
+import com.example.jul_allim.databinding.FragmentNoticeWriteBinding
+import com.example.jul_allim.viewmodel.NoticeViewModel
 import java.io.ByteArrayOutputStream
 
-class WriteNotionFragment : Fragment() {
-    val viewmodel: NotionViewModel by activityViewModels()
-    val img_arr: ArrayList<Bitmap> = arrayListOf()
-    lateinit var binding: FragmentWriteNotionBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+class NoticeWriteFragment : Fragment() {
+    val viewModel: NoticeViewModel by activityViewModels()
 
+    lateinit var binding: FragmentNoticeWriteBinding
+    val img_arr: ArrayList<Bitmap> = arrayListOf()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentWriteNotionBinding.inflate(inflater,container,false)
-
-        binding.btnUpload.setOnClickListener {
-            val img_string: ArrayList<String> = arrayListOf()
-            img_arr.forEach {
-                img_string.add(it.ToString())
-            }
-
-            viewmodel.addNotions(binding.writespace.text.toString(),
-                if(binding.swichJK.isChecked) "Kau" else "Jul",img_string.toTypedArray())
-
-            MainActivity.getInstance()
-                ?.setMainFragment(NotionFragment(),"공지사항")
-        }
+        binding = FragmentNoticeWriteBinding.inflate(inflater,container,false)
 
         binding.btnIMG.setOnClickListener {
             addImg()
         }
 
+        binding.btnUpload.setOnClickListener{
+            viewModel.newNotice(
+                !binding.swichJK.isChecked,
+                binding.writespace.text.toString(),
+                img_arr.toTypedArray()
+            )
+            MainActivity.getInstance()
+                ?.setMainFragment(NoticeMainFragment(),"공지사항")
 
+        }
         return binding.root
     }
 
@@ -83,9 +76,9 @@ class WriteNotionFragment : Fragment() {
     }
 
     private val setImg = registerForActivityResult(
-    ActivityResultContracts.StartActivityForResult()){
+        ActivityResultContracts.StartActivityForResult()){
         //결과 코드 OK , 결가값 null 아니면
-        if(it.resultCode == RESULT_OK && it.data != null){
+        if(it.resultCode == Activity.RESULT_OK && it.data != null){
             val uri  = it.data!!.data!!
             // uri에서 비트맵 이미지 생성
             val img: Bitmap =
@@ -95,17 +88,9 @@ class WriteNotionFragment : Fragment() {
             img_arr.add(img)
             Log.d("addIMG",img_arr.toString())
             binding.imglist.apply {
-                adapter=NotionIMGAdapter(img_arr.toTypedArray())
+                adapter=NoticeImageAdapter(img_arr.toTypedArray())
                 layoutManager =  LinearLayoutManager(requireContext()).also { it.orientation = LinearLayoutManager.HORIZONTAL }
             }
         }
-    }
-
-
-    fun Bitmap.ToString(): String {
-        val baos = ByteArrayOutputStream()
-        this.compress(Bitmap.CompressFormat.JPEG, 10, baos)
-        val b = baos.toByteArray()
-        return Base64.encodeToString(b, Base64.DEFAULT)
     }
 }

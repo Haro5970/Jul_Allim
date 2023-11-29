@@ -27,13 +27,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
             // 화면 초기화
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setMainFragment(NotionFragment(),"공지사항")
+        setMainFragment(NoticeMainFragment(),"공지사항")
         setUnderbarColor(1)
         setContentView(binding.root)
 
             // 하단바 버튼 클릭시 페이지 이동
         binding.btn1.setOnClickListener {
-            setMainFragment(NotionFragment(),"공지사항")
+            setMainFragment(NoticeMainFragment(),"공지사항")
             setUnderbarColor(1)
         }
         binding.btn2.setOnClickListener {

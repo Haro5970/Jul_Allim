@@ -8,7 +8,7 @@
     android:background="@drawable/notionclickselector">
 
     <TextView
-        android:id="@+id/notion_content"
+        android:id="@+id/notice_lines"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="공지사항 예시"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/notion_id"
+        android:id="@+id/notice_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -27,6 +27,6 @@
         android:textSize="14sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/notion_content" />
+        app:layout_constraintStart_toEndOf="@+id/notice_lines" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
