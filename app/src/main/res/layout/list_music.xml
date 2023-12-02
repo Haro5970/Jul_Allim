@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:textAlignment="center">
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:text="곡 제목"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/txt_vocal"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:text="보컬"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/txt_title"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/txt_piano"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:text="건반"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/txt_vocal"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/txt_guitar"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="기타"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/txt_piano"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/txt_bass"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:text="베이스"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/txt_guitar"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/txt_drum"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:text="드럼/기타"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/txt_bass"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/txt_other"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="3dp"
+        android:text="그 외"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_drum"
+        tools:layout_editor_absoluteY="16dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

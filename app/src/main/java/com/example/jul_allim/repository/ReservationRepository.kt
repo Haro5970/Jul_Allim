@@ -1,5 +1,7 @@
 package com.example.jul_allim.repository
 
+import androidx.lifecycle.MutableLiveData
+import com.example.jul_allim.Reservation
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -7,40 +9,27 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 
 class ReservationRepository {
-    // private val reservations = mutableListOf<Reservation>()
-
-    /*
-    fun getReservations(): List<Reservation> {
-        return reservations
-    }
-
-    fun addReservation(reservation: Reservation) {
-        reservations.add(reservation)
-    }
-
-     */
-
     private val database = Firebase.database
-    private val ReservationsRef = database.getReference("reservations")
-
-    fun observeReservation(date: String, time: String, onReservationsFetched: (List<String>) -> Unit) {
-        ReservationsRef.child(date).child(time).child("musictitle")
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val musicTitles: MutableList<String> = mutableListOf()
-                    for (childSnapshot in dataSnapshot.children) {
-                        val musicTitle = childSnapshot.getValue(String::class.java)
-                        musicTitle?.let {
-                            musicTitles.add(it)
-                        }
-                    }
-                    onReservationsFetched(musicTitles)
+    val ReservationRef = database.getReference("Schedule")
+    fun observeReservation(livelist: MutableLiveData<MutableList<Reservation>>, date: String) {
+        ReservationRef.child(date).addValueEventListener(object: ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+                livelist.postValue(mutableListOf())
+            }
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val list: MutableList<Reservation> = mutableListOf()
+                snapshot.children.forEach{
+                    list.add(Reservation(date,it.key, it.value as String))
                 }
+                livelist.postValue(list)
+            }
+        })
+    }
 
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle errors
-                }
-            })
+    fun newReservation(livelist: List<Reservation>) {
+        livelist.forEach{reservation ->
+            ReservationRef.child(reservation.day).child(reservation.time!!).setValue(reservation.musictitle)
+        }
     }
 
 

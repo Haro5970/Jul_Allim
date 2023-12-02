@@ -1,7 +1,6 @@
 package com.example.jul_allim
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,23 +21,14 @@ class ReservationAdapter(var reservations: MutableList<Reservation>, var selecte
     override fun getItemCount() = reservations.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val reservation = reservations[position]
-
-        // 선택 날짜랑 예약현황날짜 비교
-        if (reservation.day == selectedDate) {
-            holder.bind(reservation)
-
-        } else {
-            // 다르면 안 뜨게
-            holder.itemView.visibility = View.GONE
-        }
+        holder.bind(reservations[position])
     }
 
     fun getCheckedReservations(): List<Reservation> {
         return reservations.filter { it.isChecked }
     }
     @SuppressLint("NotifyDataSetChanged")
-    fun updateMusictitles(fragmentBinding: FragmentClubReservateBinding) {
+    fun updateMusictitles(fragmentBinding: FragmentClubReservateBinding): List<Reservation> {
 
         var enteredTitle: String = fragmentBinding.txtWrite.text.toString()
 
@@ -47,9 +37,9 @@ class ReservationAdapter(var reservations: MutableList<Reservation>, var selecte
         for (reservation in checkedReservations) {
             reservation.musictitle = enteredTitle
         }
-        // getNewReservation(enteredTitle)
 
         notifyDataSetChanged() // 데이터가 변경되었음을 어댑터에 알림
+        return checkedReservations
     }
 
     fun getNewReservation(enteredTitle: String): MutableList<Reservation> {
@@ -61,7 +51,7 @@ class ReservationAdapter(var reservations: MutableList<Reservation>, var selecte
 
         fun bind(reservation: Reservation) {
             binding.txtTime.text = reservation.time
-            binding.txtMusictitle.text = reservation.musictitle
+            binding.txtMusictitle.text = reservation.preview
 
             // musictitle이 비어 있으면 btn_ms를 보이게 함
             binding.btnMs.visibility = if (reservation.musictitle.isEmpty()) View.VISIBLE else View.GONE
@@ -72,8 +62,5 @@ class ReservationAdapter(var reservations: MutableList<Reservation>, var selecte
                 reservation.isChecked = isChecked
             }
         }
-
     }
-
-
 }

@@ -1,5 +1,17 @@
 package com.example.jul_allim
 
-data class Music(var title : String, var vocal : String, var piano : String, var guitar : String, var drum : String, var other : String){
-
+data class Music(val title : String = "",
+                 val vocal : String = "",
+                 val piano : String = "",
+                 val guitar : String = "",
+                 val bass : String = "",
+                 val drum : String = "",
+                 val other : String = ""
+){
+    val maxLength = 3
+    val title_: String get() = if (title.length > maxLength) {
+        "${title.subSequence(0, maxLength)}.."
+    } else {
+        title
+    }
 }
