@@ -28,8 +28,8 @@ class MusicListFragment : Fragment() {
         )
          */
         viewModel.musics.observe(viewLifecycleOwner) {
-            val list= it
-            list.add(0,Music("곡제목","보컬","건반","기타","베이스","드럼/카혼","그 외"))
+            val list = it.clone() as ArrayList<Music>
+            list.add(0,Music("곡제목","보컬","건반","기타","베이스","퍼커션","그 외"))
             adapter = MusiclistAdapter(list)
 
             binding.recMusic.adapter = adapter

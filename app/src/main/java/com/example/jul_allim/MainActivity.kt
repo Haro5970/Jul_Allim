@@ -66,9 +66,10 @@ class MainActivity : AppCompatActivity() {
         var cnt: Int = 0
         binding.Logo.setOnClickListener {
             cnt += 1
-            if(cnt == 5){
+            if(cnt >= 5){
                 IsAdmin = !IsAdmin
                 cnt = 0
+                setMainFragment(lastFragment[0] as Fragment,lastFragment[1] as String)
             }
         }
 
@@ -120,3 +121,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+
+
+/*
+list {r1,ㄱ2,ㄱ3
+
+list.foreach{res->
+    ref.child(res.day).child(res.time).setValue(res.titile)
+
+*
+* */

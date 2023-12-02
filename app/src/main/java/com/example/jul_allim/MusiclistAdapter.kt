@@ -1,5 +1,6 @@
 package com.example.jul_allim
 
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

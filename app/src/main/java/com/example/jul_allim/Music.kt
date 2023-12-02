@@ -8,7 +8,7 @@ data class Music(val title : String = "",
                  val drum : String = "",
                  val other : String = ""
 ){
-    val maxLength = 3
+    val maxLength = 5
     val title_: String get() = if (title.length > maxLength) {
         "${title.subSequence(0, maxLength)}.."
     } else {
