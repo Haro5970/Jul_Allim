@@ -7,63 +7,76 @@
     android:layout_height="match_parent"
     tools:context=".ProfileEditFragment" >
 
-    <EditText
-        android:id="@+id/editname"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="100dp"
-        android:ems="10"
-        android:hint="이름"
-        android:inputType="text"
-        android:text="이름"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/julullim_icon"
+        app:layout_constraintBottom_toTopOf="@+id/editstnum"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editstnum"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="26dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="학번"
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="230dp"
+        android:text="select"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editname" />
-
-    <EditText
-        android:id="@+id/editsessoin"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="26dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="세션"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editstnum" />
-
-    <EditText
-        android:id="@+id/editline"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="26dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="한줄소개"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editsessoin" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:text="저장"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editline" />
+
+    <EditText
+        android:id="@+id/editsessoin"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="세션"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editstnum" />
+
+    <EditText
+        android:id="@+id/editstnum"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="230dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="학번"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editline"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="한줄소개"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editsessoin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

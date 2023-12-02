@@ -10,13 +10,19 @@ class StudentVM : ViewModel() {
 
     //레포지토리 객체 생성
     private val repo = StudentRepo()
+
+    // Create a MutableLiveData object
+    private val studentList = MutableLiveData<MutableList<Student>>()
+
     //livedata 반환
     fun fetchData():LiveData<MutableList<Student>> {
-        val mutableData = MutableLiveData<MutableList<Student>>()
-        repo.getData().observeForever {
-            mutableData.value = it
-        }
+        repo.getData(studentList)
 
-        return mutableData
+        return studentList
+    }
+
+    fun updateprof(num: String, ss: String, line: String, pic: String) {
+        repo.profileUpdate(num,ss,line,pic)
+
     }
 }

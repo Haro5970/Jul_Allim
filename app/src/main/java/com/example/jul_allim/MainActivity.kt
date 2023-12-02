@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     companion object{
         private var instance:MainActivity? = null
         var IsAdmin: Boolean = false
+        val myname: String = "배별하"
         fun getInstance(): MainActivity? {
             return instance
         }

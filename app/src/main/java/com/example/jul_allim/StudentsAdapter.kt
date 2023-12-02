@@ -1,5 +1,9 @@
 package com.example.jul_allim
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +33,9 @@ class StudentsAdapter : RecyclerView.Adapter<StudentsAdapter.Holder>(){
             binding.txtId.text= student.id
             binding.txtSession.text = student.session
             binding.txtOneline.text = student.line
+
+            binding.imageView.setImageBitmap(student.bitmap())
+            }
         }
     }
-}
+
