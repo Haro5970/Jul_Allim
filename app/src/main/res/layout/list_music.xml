@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/txt_title"
-        android:layout_width="58dp"
+        android:layout_width="115dp"
         android:layout_height="wrap_content"
         android:text="곡 제목"
         android:textAlignment="center"
@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/txt_vocal"
-        android:layout_width="58dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="보컬"
         android:textAlignment="center"
@@ -26,7 +26,7 @@
 
     <TextView
         android:id="@+id/txt_piano"
-        android:layout_width="58dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="건반"
         android:textAlignment="center"
@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/txt_guitar"
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="기타"
         android:textAlignment="center"
@@ -44,7 +44,7 @@
 
     <TextView
         android:id="@+id/txt_bass"
-        android:layout_width="58dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="베이스"
         android:textAlignment="center"
@@ -53,16 +53,16 @@
 
     <TextView
         android:id="@+id/txt_drum"
-        android:layout_width="58dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="드럼/기타"
+        android:text="퍼커션"
         android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@+id/txt_bass"
         tools:layout_editor_absoluteY="16dp" />
 
     <TextView
         android:id="@+id/txt_other"
-        android:layout_width="58dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="3dp"
         android:text="그 외"
@@ -70,4 +70,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txt_drum"
         tools:layout_editor_absoluteY="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
