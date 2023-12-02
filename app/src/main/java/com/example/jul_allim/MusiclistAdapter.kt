@@ -20,7 +20,7 @@ class MusiclistAdapter(var musiclists: ArrayList<Music>) : RecyclerView.Adapter<
 
     class Holder(private val binding: ListMusicBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(music: Music) {
-            binding.txtTitle.text = music.preview
+            binding.txtTitle.text = music.title_
             binding.txtVocal.text = music.vocal
             binding.txtPiano.text = music.piano
             binding.txtGuitar.text = music.guitar
