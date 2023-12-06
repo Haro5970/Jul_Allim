@@ -19,22 +19,25 @@ class NoticeRepository {
     private val database = Firebase.database
     val NoticeLinesRef = database.getReference("Notice/lines")
     val NoticeImageRef = database.getReference("Notice/images")
+
     fun observeNoticeList(noticejList: MutableLiveData<Array<Notice>>, noticekList: MutableLiveData<Array<Notice>>) {
         NoticeLinesRef.addValueEventListener(object: ValueEventListener{
             override fun onCancelled(error: DatabaseError) {}
             override fun onDataChange(snapshot: DataSnapshot) {
                 val arrJ = arrayListOf<Notice>()
                 val arrK = arrayListOf<Notice>()
-                snapshot.children.forEach {
-                    if(it.key!!.startsWith("J")){
-                        arrJ.add(Notice(it.key!!,it.value as String))
-                    }
-                    else{
-                        arrK.add(Notice(it.key!!,it.value as String))
+                snapshot.children.forEach { child->
+                    child.key?.let{ key->
+                        if(key.startsWith("J")){
+                            arrJ.add(Notice(key,child.value as String))
+                        }
+                        else{
+                            arrK.add(Notice(key,child.value as String))
+                        }
                     }
                 }
-                arrJ.sortBy{it.id}; arrJ.reverse()
-                arrK.sortBy{it.id}; arrK.reverse()
+                arrJ.sortBy{it.id}; arrJ.reverse(); arrJ.subList(0, minOf(20,arrJ.size))
+                arrK.sortBy{it.id}; arrK.reverse(); arrK.subList(0, minOf(20,arrK.size))
                 noticejList.postValue(arrJ.toTypedArray())
                 noticekList.postValue(arrK.toTypedArray())
             }
@@ -42,18 +45,13 @@ class NoticeRepository {
     }
     fun getImages(id: String,liveData: MutableLiveData<Array<Bitmap>>) {
         NoticeImageRef.child(id).get().addOnSuccessListener {
-            it.value?.let {
-                val strData = it as ArrayList<String>
+            it.value?.let { v->
+                val strData = v as ArrayList<String>
                 val bitmapData = arrayListOf<Bitmap>()
                 strData.forEach {
-                    val imageBytes = Base64.decode(it, 0)
-                    bitmapData.add(
-                        BitmapFactory.decodeByteArray(
-                            imageBytes,
-                            0,
-                            imageBytes.size
-                        )
-                    )
+                    with(Base64.decode(it, 0)){
+                        bitmapData.add(  BitmapFactory.decodeByteArray(this,0, this.size) )
+                    }
                 }
                 liveData.postValue(bitmapData.toTypedArray())
             } ?: run {
@@ -68,9 +66,10 @@ class NoticeRepository {
         if(images.size>0){
             val strImages = arrayListOf<String>()
             images.forEach {
-                val baos = ByteArrayOutputStream()
-                it.compress(Bitmap.CompressFormat.JPEG, 20, baos)
-                strImages.add(Base64.encodeToString(baos.toByteArray(),Base64.DEFAULT))
+                with(ByteArrayOutputStream()){
+                    it.compress(Bitmap.CompressFormat.JPEG, 10, this)
+                    strImages.add(Base64.encodeToString(this.toByteArray(),Base64.DEFAULT))
+                }
             }
             NoticeImageRef.child(id).setValue(strImages)
         }

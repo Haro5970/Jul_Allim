@@ -25,12 +25,13 @@ class NoticeViewModel: ViewModel() {
         repository.getImages(id,liveData)
     }
     fun newNotice(IsJul: Boolean,lines: String, images: Array<Bitmap>) {
+        val tag = if(IsJul) "J" else "K"
         val today = SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis())
         val noticelist = (if(IsJul) noticeJL.value!! else noticeKL.value!!).filter{
-            it.id.startsWith( (if(IsJul) "J" else "K") +today)
+            it.id.startsWith( tag +today)
         }
-        val id = if(noticelist.size==0) (if(IsJul) "J" else "K")+today+"00"
-                else (if(IsJul) "J" else "K")+(noticelist[0].id.substring(1).toInt()+1).toString()
+        val id = if(noticelist.size==0) tag+today+"00"
+                else tag +(noticelist[0].id.substring(1).toInt()+1).toString()
 
         repository.newNotice(id,lines,images)
     }

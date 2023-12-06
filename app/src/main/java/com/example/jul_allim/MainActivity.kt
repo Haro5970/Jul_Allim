@@ -9,15 +9,20 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.jul_allim.databinding.ActivityMainBinding
 
+class Navbtn(
+    val btn: android.widget.ImageButton,
+    val frag: Fragment,
+    val title: String,
+    )
+
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
-    lateinit var lastFragment: Array<Any>
 
         // setMainFragment 메소드를 다른 프레그먼트에서 사용하기 위해 companion객체 생성
     init{
         instance = this
     }
-    companion object{
+    companion object{ // 다른곳에서 사용할 것들
         private var instance:MainActivity? = null
         var IsAdmin: Boolean = false
         val myname: String = "배별하"
@@ -26,40 +31,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    lateinit var btn_nav: Array<Navbtn>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
             // 화면 초기화
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setMainFragment(NoticeMainFragment(),"공지사항")
-        lastFragment = arrayOf( NoticeMainFragment(),"공지사항",1)
-        setUnderbarColor(1)
         setContentView(binding.root)
+        btn_nav = arrayOf(
+            Navbtn(binding.btn1,NoticeMainFragment(),"공지사항"),
+            Navbtn(binding.btn2,CalenderFragment(),"캘린더"),
+            Navbtn(binding.btn3,ClubReservationFragment(),"동방예약"),
+            Navbtn(binding.btn4,MusicListFragment(),"곡리스트"),
+            Navbtn(binding.btn5,ProfileFragment(),"프로필") )
 
-            // 하단바 버튼 클릭시 페이지 이동
-        binding.btn1.setOnClickListener {
-            setMainFragment(NoticeMainFragment(),"공지사항")
-            lastFragment = arrayOf( NoticeMainFragment(),"공지사항",1)
-            setUnderbarColor(1)
-        }
-        binding.btn2.setOnClickListener {
-            setMainFragment(CalenderFragment(),"캘린더")
-            lastFragment = arrayOf( CalenderFragment(),"캘린더",2)
-            setUnderbarColor(2)
-        }
-        binding.btn3.setOnClickListener {
-            setMainFragment(ClubReservationFragment(),"동방예약")
-            lastFragment = arrayOf( ClubReservationFragment(),"동방예약",3)
-            setUnderbarColor(3)
-        }
-        binding.btn4.setOnClickListener {
-            setMainFragment(MusicListFragment(),"곡리스트")
-            lastFragment = arrayOf( MusicListFragment(),"곡리스트",4)
-            setUnderbarColor(4)
-        }
-        binding.btn5.setOnClickListener {
-            setMainFragment(ProfileFragment(), "프로필 설정")
-            lastFragment = arrayOf( ProfileFragment(),"프로필 설정",5)
-            setUnderbarColor(5)
+        setMainFragment(NoticeMainFragment(),"공지사항")
+
+
+        btn_nav.forEach { nav->
+            nav.btn.setOnClickListener{
+                setMainFragment(nav.frag,nav.title)
+
+                btn_nav.forEach {
+                    it.btn.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.gray))
+                }
+                nav.btn.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.black))
+            }
         }
 
         // 임시 관리자 권한 설정
@@ -69,7 +66,6 @@ class MainActivity : AppCompatActivity() {
             if(cnt >= 5){
                 IsAdmin = !IsAdmin
                 cnt = 0
-                setMainFragment(lastFragment[0] as Fragment,lastFragment[1] as String)
             }
         }
 
@@ -85,31 +81,19 @@ class MainActivity : AppCompatActivity() {
             replace(binding.mainScreen.id,fragment)
             commit()
         }
-        Log.d("setMainFragment",title)
         binding.textTitle.text = title
-    }
-    // 하단버튼 색변경
-    fun setUnderbarColor( btnN: Int){
-
-        val btn_arr=arrayOf(binding.btn1,binding.btn2,binding.btn3,binding.btn4,binding.btn5)
-        for( i:Int in 1..5){
-            if(btnN==i){
-                btn_arr[i-1].imageTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(this, R.color.black))
-            }
-            else{
-                btn_arr[i-1].imageTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(this, R.color.gray))
-            }
-        }
     }
 
 
     var backPressedTime: Long = 0
+    lateinit var lastNav: Navbtn
     override fun onBackPressed() {
-        if (binding.mainScreen.getFragment<Fragment>() != lastFragment[0]){
-            setMainFragment(lastFragment[0] as Fragment, lastFragment[1] as String)
-            setUnderbarColor(lastFragment[2] as Int)
+        if (binding.mainScreen.getFragment<Fragment>() != lastNav.frag){
+            setMainFragment(lastNav.frag, lastNav.title)
+            btn_nav.forEach {
+                it.btn.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.gray))
+            }
+            lastNav.btn.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.black))
         }
         else{
             if (System.currentTimeMillis() - backPressedTime < 2000) {
@@ -120,15 +104,5 @@ class MainActivity : AppCompatActivity() {
             backPressedTime = System.currentTimeMillis()
         }
     }
+
 }
-
-
-
-/*
-list {r1,ㄱ2,ㄱ3
-
-list.foreach{res->
-    ref.child(res.day).child(res.time).setValue(res.titile)
-
-*
-* */
