@@ -8,11 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.jul_allim.databinding.FragmentClubReservateBinding
 import com.example.jul_allim.databinding.ListTimeBinding
 
-class ReservationAdapter(var reservations: MutableList<Reservation>, var selectedDate: String)
+class ReservationAdapter(var reservations: MutableList<Reservation>)
     : RecyclerView.Adapter<ReservationAdapter.Holder>() {
 
-    private var selectedTime: String? = null
-    // var enteredTitle
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ListTimeBinding.inflate(LayoutInflater.from(parent.context))
         return Holder(binding)
@@ -42,13 +40,7 @@ class ReservationAdapter(var reservations: MutableList<Reservation>, var selecte
         return checkedReservations
     }
 
-    fun getNewReservation(enteredTitle: String): MutableList<Reservation> {
-        reservations.add(Reservation(selectedDate, selectedTime, enteredTitle))
-        return reservations
-    }
-
     class Holder(private val binding: ListTimeBinding) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(reservation: Reservation) {
             binding.txtTime.text = reservation.time
             binding.txtMusictitle.text = reservation.preview

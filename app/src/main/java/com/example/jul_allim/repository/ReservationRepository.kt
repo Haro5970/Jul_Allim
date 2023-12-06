@@ -26,12 +26,10 @@ class ReservationRepository {
         })
     }
 
-    fun newReservation(livelist: List<Reservation>) {
+    fun newReservation(livelist: List<Reservation>, day_: String) {
         livelist.forEach{reservation ->
-            ReservationRef.child(reservation.day).child(reservation.time!!).setValue(reservation.musictitle)
+            reservation.day = day_
+            ReservationRef.child(day_).child(reservation.time!!).setValue(reservation.musictitle)
         }
     }
-
-
-
 }

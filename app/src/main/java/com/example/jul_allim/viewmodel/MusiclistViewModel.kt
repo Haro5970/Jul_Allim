@@ -17,6 +17,6 @@ class MusiclistViewModel : ViewModel() {
     }
 
     fun newMusics(music: Music){
-        repository.newMusic(music)// 데이터베이스에 업데이트
+        repository.newMusic(music)
     }
 }

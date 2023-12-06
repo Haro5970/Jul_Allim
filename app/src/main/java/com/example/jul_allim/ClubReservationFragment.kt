@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -19,7 +20,6 @@ import java.time.format.DateTimeFormatter
 class ClubReservationFragment : Fragment() {
 
     val viewModel: ReservationViewModel by activityViewModels()
-
     lateinit var adapter: ReservationAdapter // 전역 변수로 선언
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -40,38 +40,32 @@ class ClubReservationFragment : Fragment() {
             currentDate = currentDate.plusDays(1)
         }
 
-        val selectedYear = binding.pickDate.year
-        val selectedMonth = binding.pickDate.month + 1
-        val selectedDay = binding.pickDate.dayOfMonth
-        val selectedDate = "${selectedYear}${String.format("%02d", selectedMonth)}${String.format("%02d", selectedDay)}"
+        fun getSelectedDate(binding: DatePicker): String {
+            val year = binding.year
+            val month = binding.month + 1
+            val dayOfMonth = binding.dayOfMonth
+            return "${year}${String.format("%02d", month)}${String.format("%02d", dayOfMonth)}"
+        }
 
-        var reservations = mutableListOf<Reservation>()
-        adapter = ReservationAdapter(reservations, selectedDate)
-
-        // 리사이클러뷰 어뎁터
-        binding.recTime.adapter = adapter
-        // 아이템을 수직 방향으로 배치
+        val reservations = mutableListOf<Reservation>()
         binding.recTime.layoutManager = LinearLayoutManager(context)
 
         viewModel.reservations.observe(viewLifecycleOwner){ data ->
-            val times = arrayOf("09:00~10:00", "10:00~11:00", "11:00~12:00", "12:00~13:00", "13:00~14:00", "14:00~15:00", "15:00~16:00", "16:00~17:00", "17:00~18:00", "18:00~19:00", "19:00~20:00", "20:00~21:00") // 원하는 시간을 추가하십시오.
+            val times = arrayOf("09:00~10:00", "10:00~11:00", "11:00~12:00", "12:00~13:00", "13:00~14:00", "14:00~15:00", "15:00~16:00", "16:00~17:00", "17:00~18:00", "18:00~19:00", "19:00~20:00", "20:00~21:00")
             reservations.clear()
-            times.forEach { t->
-                val r = data.find { it.time == t }
-                if(r != null){
-                    reservations.add(r)
+            times.forEach { reservet->
+                val title = data.find { it.time == reservet }
+                if(title != null){
+                    reservations.add(title)
                 }
                 else{
-                    reservations.add(Reservation(selectedDate, t, ""))
+                    reservations.add(Reservation(getSelectedDate(binding.pickDate), reservet, ""))
                 }
             }
         }
 
         binding.pickDate.setOnDateChangedListener { datePicker, i, i2, i3 ->
-            val year = binding.pickDate.year
-            val month = binding.pickDate.month+1
-            val dayOfMonth = binding.pickDate.dayOfMonth
-            val selectedDate_ = "${year}${String.format("%02d", month)}${String.format("%02d", dayOfMonth)}"
+            val selectedDate_ = getSelectedDate(binding.pickDate)
 
             viewModel.day = selectedDate_
             viewModel.dayChange(selectedDate_)
@@ -80,26 +74,33 @@ class ClubReservationFragment : Fragment() {
         }
 
         binding.btnCh.setOnClickListener {
+            binding.txtWrite.text.clear()
+
             val year = binding.pickDate.year
             val month = binding.pickDate.month+1
             val dayOfMonth = binding.pickDate.dayOfMonth
-            val selectedDate_ = "${year}${String.format("%02d", month)}${String.format("%02d", dayOfMonth)}"
+
+            val selectedDate_ = getSelectedDate(binding.pickDate)
+            viewModel.day = selectedDate_
+            viewModel.dayChange(selectedDate_)
 
             Log.d("res","${selectedDate_}\n${viewModel.day}\n${reservations}")
 
-            //
             binding.rsvCurrent.text = "${year}년 ${month}월 ${dayOfMonth}일 동방 예약 현황"
             binding.rsvCurrent.visibility = View.VISIBLE
             binding.recTime.visibility = View.VISIBLE
             // 20231101 형식으로 날짜 selectedDate에 저장하고 adapter에 비교함수 따라서 보이게 or 안보이게
-            adapter = ReservationAdapter(reservations, selectedDate)
+            adapter = ReservationAdapter(reservations)
             binding.recTime.adapter = adapter
         }
 
         binding.btnWrite.setOnClickListener {
-            viewModel.newMusictitles(adapter.updateMusictitles(binding))
-        }
+            val selectedDate_ = getSelectedDate(binding.pickDate)
+            viewModel.day = selectedDate_
 
+            viewModel.newMusictitles(adapter.updateMusictitles(binding), selectedDate_)
+            Log.d("res2","${selectedDate_}\n${viewModel.day}\n${reservations}")
+        }
         return binding.root
     }
 

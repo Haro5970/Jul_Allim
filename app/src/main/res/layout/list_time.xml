@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/_bgcolor">
 
     <TextView
         android:id="@+id/txt_time"
@@ -38,6 +39,7 @@
         android:layout_marginStart="30dp"
         android:text="선택"
         android:textSize="20sp"
+        app:buttonIconTint="#FFDD77"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txt_time"

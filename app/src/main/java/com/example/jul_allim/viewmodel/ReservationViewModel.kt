@@ -20,7 +20,7 @@ class ReservationViewModel : ViewModel() {
         repository.observeReservation(reserve_list, day_)
     }
 
-    fun newMusictitles(musictitle: List<Reservation>){
-        repository.newReservation(musictitle)// 데이터베이스에 업데이트
+    fun newMusictitles(musictitle: List<Reservation>, day_: String){
+        repository.newReservation(musictitle, day_)// 데이터베이스에 업데이트
     }
 }

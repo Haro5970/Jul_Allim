@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_base"
+    android:background="#ffffff"
     tools:context=".NoticeListFragment">
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
-        android:background="@color/notice_table"
+        android:background="@color/_barcolor"
         android:overScrollMode="never"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/notice_title"

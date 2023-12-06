@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_base"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#EDEDED"
+        android:background="#FFF2CC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -52,7 +52,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -69,50 +69,56 @@
             android:layout_width="83dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:backgroundTint="#FFE69C"
             android:scaleType="fitCenter"
             android:src="@drawable/megaphone_loud"
             app:tint="@color/black"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            />
 
         <ImageButton
             android:id="@+id/btn2"
             android:layout_width="83dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:backgroundTint="#FFE69C"
             android:scaleType="fitCenter"
             android:src="@drawable/calender_icon"
-            tools:ignore="SpeakableTextPresentCheck"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/btn3"
             android:layout_width="83dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:backgroundTint="#FFE69C"
             android:scaleType="fitCenter"
             android:src="@drawable/alarm_icon"
-            tools:ignore="SpeakableTextPresentCheck"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/btn4"
             android:layout_width="83dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:backgroundTint="#FFE69C"
             android:scaleType="fitCenter"
             android:src="@drawable/mic_icon"
-            tools:ignore="SpeakableTextPresentCheck"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/btn5"
             android:layout_width="83dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:backgroundTint="#FFE69C"
             android:scaleType="fitCenter"
             android:src="@drawable/profile_icon"
-            tools:ignore="SpeakableTextPresentCheck"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
