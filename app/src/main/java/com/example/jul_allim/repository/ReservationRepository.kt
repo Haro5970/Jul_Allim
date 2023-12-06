@@ -13,13 +13,13 @@ class ReservationRepository {
     val ReservationRef = database.getReference("Schedule")
     fun observeReservation(livelist: MutableLiveData<MutableList<Reservation>>, date: String) {
         ReservationRef.child(date).addValueEventListener(object: ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {
-                livelist.postValue(mutableListOf())
-            }
+            override fun onCancelled(error: DatabaseError) {}
             override fun onDataChange(snapshot: DataSnapshot) {
                 val list: MutableList<Reservation> = mutableListOf()
                 snapshot.children.forEach{
-                    list.add(Reservation(date,it.key, it.value as String))
+                    it.key?.let { key ->
+                        list.add(Reservation(date,key, it.value as String))
+                    }
                 }
                 livelist.postValue(list)
             }
@@ -29,7 +29,7 @@ class ReservationRepository {
     fun newReservation(livelist: List<Reservation>, day_: String) {
         livelist.forEach{reservation ->
             reservation.day = day_
-            ReservationRef.child(day_).child(reservation.time!!).setValue(reservation.musictitle)
+            ReservationRef.child(day_).child(reservation.time).setValue(reservation.musictitle)
         }
     }
 }

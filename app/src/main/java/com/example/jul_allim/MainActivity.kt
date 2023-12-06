@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             Navbtn(binding.btn5,ProfileFragment(),"프로필") )
 
         setMainFragment(NoticeMainFragment(),"공지사항")
+        lastNav=btn_nav[0]
 
 
         btn_nav.forEach { nav->
@@ -66,6 +67,12 @@ class MainActivity : AppCompatActivity() {
             if(cnt >= 5){
                 IsAdmin = !IsAdmin
                 cnt = 0
+                Toast.makeText(this, if(IsAdmin) "관리자 모드가 실행되었습니다." else "관리자 모드가 중기되었습니다.", Toast.LENGTH_SHORT).show()
+                setMainFragment(btn_nav[0].frag,btn_nav[0].title)
+                btn_nav.forEach {
+                    it.btn.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.gray))
+                }
+                btn_nav[0].btn.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.black))
             }
         }
 

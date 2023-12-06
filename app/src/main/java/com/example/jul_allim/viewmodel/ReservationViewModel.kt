@@ -5,19 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.jul_allim.Reservation
 import com.example.jul_allim.repository.ReservationRepository
+import java.text.SimpleDateFormat
 
 class ReservationViewModel : ViewModel() {
     private val repository = ReservationRepository()
     private val reserve_list = MutableLiveData<MutableList<Reservation>>(mutableListOf())
     val reservations: LiveData<MutableList<Reservation>> get() = reserve_list
-    var day: String = "20231108"
-
-    init{
-        repository.observeReservation(reserve_list, day)
+    init {
+        dayChange(SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis()))
     }
-
-    fun dayChange(day_: String){
-        repository.observeReservation(reserve_list, day_)
+    fun dayChange(day: String){
+        repository.observeReservation(reserve_list, day)
     }
 
     fun newMusictitles(musictitle: List<Reservation>, day_: String){
