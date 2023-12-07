@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.jul_allim.databinding.FragmentClubReservateBinding
 import com.example.jul_allim.databinding.ListTimeBinding
 
-class ReservationAdapter(var reservations: MutableList<Reservation>)
+class ReservationAdapter(var reservations: ArrayList<Reservation>)
     : RecyclerView.Adapter<ReservationAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -28,7 +28,7 @@ class ReservationAdapter(var reservations: MutableList<Reservation>)
     @SuppressLint("NotifyDataSetChanged")
     fun updateMusictitles(fragmentBinding: FragmentClubReservateBinding): List<Reservation> {
 
-        var enteredTitle: String = fragmentBinding.txtWrite.text.toString()
+        val enteredTitle: String = fragmentBinding.txtWrite.text.toString()
 
         val checkedReservations = getCheckedReservations()
 

@@ -39,7 +39,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:background="@color/black"
+        android:background="@color/_barcolor"
         app:layout_constraintBottom_toTopOf="@+id/noticeId"
         app:layout_constraintEnd_toEndOf="@+id/noticeView"
         app:layout_constraintStart_toStartOf="@+id/noticeView">

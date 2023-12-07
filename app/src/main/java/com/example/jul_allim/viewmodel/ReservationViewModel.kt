@@ -9,16 +9,16 @@ import java.text.SimpleDateFormat
 
 class ReservationViewModel : ViewModel() {
     private val repository = ReservationRepository()
-    private val reserve_list = MutableLiveData<MutableList<Reservation>>(mutableListOf())
-    val reservations: LiveData<MutableList<Reservation>> get() = reserve_list
+    private val reserve_list = MutableLiveData<ArrayList<Reservation>>(arrayListOf())
+    val reservations: LiveData<ArrayList<Reservation>> get() = reserve_list
     init {
-        dayChange(SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis()))
+        dateChange(SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis()))
     }
-    fun dayChange(day: String){
-        repository.observeReservation(reserve_list, day)
+    fun dateChange(date: String){
+        repository.observeReservation(reserve_list, date)
     }
 
-    fun newMusictitles(musictitle: List<Reservation>, day_: String){
-        repository.newReservation(musictitle, day_)// 데이터베이스에 업데이트
+    fun newMusictitles(musictitle: List<Reservation>, date_: String){
+        repository.newReservation(musictitle, date_)// 데이터베이스에 업데이트
     }
 }

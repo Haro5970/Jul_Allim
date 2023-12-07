@@ -19,32 +19,16 @@
 
     <DatePicker
         android:id="@+id/pick_date"
-        android:layout_width="235dp"
-        android:layout_height="135dp"
+        style="RYZZE_DATEPICKER"
+        android:layout_width="264dp"
+        android:layout_height="131dp"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
         android:endYear="2024"
         android:startYear="2023"
-        app:layout_constraintStart_toStartOf="@+id/rsv_title"
-        app:layout_constraintTop_toBottomOf="@+id/rsv_title"
-        style= "RYZZE_DATEPICKER"/>
-
-    <Button
-        android:id="@+id/btn_ch"
-        android:layout_width="79dp"
-        android:layout_height="41dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="-20dp"
-        android:backgroundTint="@color/_bgcolor"
-        android:text="선택"
-        android:textColor="#000000"
-        app:iconTint="#FFDD77"
-        app:iconTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="@+id/pick_date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pick_date"
-        app:layout_constraintTop_toTopOf="@+id/pick_date"
-        app:rippleColor="@color/_bgcolor" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rsv_title" />
 
     <Button
         android:id="@+id/btn_write"

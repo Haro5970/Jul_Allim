@@ -11,11 +11,11 @@ import com.google.firebase.database.database
 class ReservationRepository {
     private val database = Firebase.database
     val ReservationRef = database.getReference("Schedule")
-    fun observeReservation(livelist: MutableLiveData<MutableList<Reservation>>, date: String) {
+    fun observeReservation(livelist: MutableLiveData<ArrayList<Reservation>>, date: String) {
         ReservationRef.child(date).addValueEventListener(object: ValueEventListener{
             override fun onCancelled(error: DatabaseError) {}
             override fun onDataChange(snapshot: DataSnapshot) {
-                val list: MutableList<Reservation> = mutableListOf()
+                val list: ArrayList<Reservation> = arrayListOf()
                 snapshot.children.forEach{
                     it.key?.let { key ->
                         list.add(Reservation(date,key, it.value as String))
@@ -26,10 +26,10 @@ class ReservationRepository {
         })
     }
 
-    fun newReservation(livelist: List<Reservation>, day_: String) {
+    fun newReservation(livelist: List<Reservation>, date_: String) {
         livelist.forEach{reservation ->
-            reservation.day = day_
-            ReservationRef.child(day_).child(reservation.time).setValue(reservation.musictitle)
+            reservation.ymddate = date_
+            ReservationRef.child(date_).child(reservation.time).setValue(reservation.musictitle)
         }
     }
 }

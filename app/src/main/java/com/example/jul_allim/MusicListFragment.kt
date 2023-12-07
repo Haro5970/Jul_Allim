@@ -14,7 +14,6 @@ class MusicListFragment : Fragment() {
 
     val viewModel: MusiclistViewModel by activityViewModels()
 
-    // var binding: ActivityMainBinding? = null
     lateinit var adapter: MusiclistAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,11 +21,6 @@ class MusicListFragment : Fragment() {
     ): View? {
         val binding = FragmentMusicListBinding.inflate(inflater,container,false)
 
-
-        /*val musics = arrayOf(
-            Music("푸르던", "윤서진", "유승빈","임세현", "석효준", "김수빈", "황주원"),
-        )
-         */
         viewModel.musics.observe(viewLifecycleOwner) {
             val list = it.clone() as ArrayList<Music>
             list.add(0,Music("곡제목","보컬","건반","기타","베이스","퍼커션","그 외"))
@@ -36,8 +30,17 @@ class MusicListFragment : Fragment() {
             binding.recMusic.layoutManager = LinearLayoutManager(context)
         }
 
+        fun clearText(){
+            binding.writeMusictitle.text.clear()
+            binding.writeVocal.text.clear()
+            binding.writeGuitar.text.clear()
+            binding.writeBass.text.clear()
+            binding.writeDrum.text.clear()
+            binding.writeOther.text.clear()
+            binding.writePiano.text.clear()
+        }
+
         binding.btnApply.setOnClickListener{
-            // 뮤직 하나 만들어서 객체를 토스해
             val enteredT: String = binding.writeMusictitle.text.toString()
             val enteredV: String = binding.writeVocal.text.toString()
             val enteredG: String = binding.writeGuitar.text.toString()
@@ -46,8 +49,8 @@ class MusicListFragment : Fragment() {
             val enteredO: String = binding.writeOther.text.toString()
             val enteredP: String = binding.writePiano.text.toString()
 
-
             viewModel.newMusics(Music(enteredT, enteredV, enteredP, enteredG, enteredB, enteredD, enteredO))
+            clearText()
         }
 
         return binding.root

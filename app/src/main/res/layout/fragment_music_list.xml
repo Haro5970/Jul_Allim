@@ -108,9 +108,11 @@
             android:layout_height="42dp"
             android:layout_marginStart="41dp"
             android:layout_marginTop="25dp"
+            android:layout_marginEnd="27dp"
             android:ems="10"
             android:hint="입력"
             android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/write_drum" />
 
@@ -129,8 +131,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rec_music"
-            android:layout_width="408dp"
-            android:layout_height="364dp"
+            android:layout_width="387dp"
+            android:layout_height="373dp"
             android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -182,8 +184,8 @@
 
         <Button
             android:id="@+id/btn_apply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="128dp"
+            android:layout_height="45dp"
             android:layout_marginStart="159dp"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="161dp"

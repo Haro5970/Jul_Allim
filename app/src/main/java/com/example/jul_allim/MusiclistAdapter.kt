@@ -9,13 +9,13 @@ import com.example.jul_allim.databinding.ListMusicBinding
 
 class MusiclistAdapter(var musiclists: ArrayList<Music>) : RecyclerView.Adapter<MusiclistAdapter.Holder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusiclistAdapter.Holder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ListMusicBinding.inflate(LayoutInflater.from(parent.context))
-        return MusiclistAdapter.Holder(binding)
+        return Holder(binding)
     }
     override fun getItemCount() = musiclists.size
 
-    override fun onBindViewHolder(holder: MusiclistAdapter.Holder, position: Int) {
+    override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.bind(musiclists[position])
     }
 
