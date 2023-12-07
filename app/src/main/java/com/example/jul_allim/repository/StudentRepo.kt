@@ -16,23 +16,16 @@ import java.sql.Struct
 class StudentRepo {
 
     private val database = Firebase.database
-
     val myRef = database.getReference("Student")
-    // Modify the function to take parameters
+    //파라미터로 넘겨
     fun getData(studentList: MutableLiveData<MutableList<Student>>) {
-
-        // 데이터 변경
         myRef.addValueEventListener(object : ValueEventListener{
             val listData: MutableList<Student> = mutableListOf<Student>()
-
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
                     for (userSnapshot in snapshot.children){
                         val getData = userSnapshot.getValue(Student::class.java)
-                        //리스트에 추가
                         listData.add(getData!!)
-
-                        // MutableLiveData에 현재 리스트 값을 설정하여 Observer에 통지
                         studentList.postValue(listData)
                     }
                 }

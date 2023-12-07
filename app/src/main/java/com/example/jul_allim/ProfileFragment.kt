@@ -30,18 +30,6 @@ class ProfileFragment : Fragment() {
     private val viewModel by lazy { ViewModelProvider(this).get(StudentVM::class.java) }
 
     //텍스트 수정
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        // FragmentResultListener를 등록합니다.
-        parentFragmentManager.setFragmentResultListener("text", this) { _, bundle ->
-            // ProfileEditFragment에서 전달한 Bundle을 받아서 텍스트를 업데이트합니다.
-            binding.txtname.text = bundle.getString("name")
-            binding.txtnum.text = bundle.getString("num")
-            binding.txtss.text = bundle.getString("ss")
-            binding.txtline.text = bundle.getString("line")
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +40,6 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
-
 
         context?.let {
             adapter = StudentsAdapter()
@@ -65,19 +52,14 @@ class ProfileFragment : Fragment() {
         //데이터 반영
         observeData()
 
-
-
         //수정하기 페이지로 넘어감
         binding.editbutton.setOnClickListener {
             MainActivity.getInstance()
                 ?.setMainFragment(ProfileEditFragment(binding.imageView14.drawable.toBitmap()), "회원 정보 수정")
         }
 
-
-
         return binding.root
     }
-
 
 
     private fun observeData() {

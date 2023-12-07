@@ -28,9 +28,3 @@ data class Student( val name: String = "Name",
         }
 }
 
-data class User (  val uname: String ?=null,
-                    val uid: String ?= null,
-                   val usession: String ?= null,
-                   val uline: String ?= null
-
-)

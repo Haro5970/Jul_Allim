@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     companion object{ // 다른곳에서 사용할 것들
         private var instance:MainActivity? = null
         var IsAdmin: Boolean = false
-        val myname: String = "배별하"
+        val myname: String = "배별하"   // 내 정보 수정
         fun getInstance(): MainActivity? {
             return instance
         }

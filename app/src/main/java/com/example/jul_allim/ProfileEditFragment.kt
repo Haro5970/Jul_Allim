@@ -41,16 +41,10 @@ class ProfileEditFragment(var picbitmap: Bitmap) : Fragment() {
     private lateinit var binding: FragmentProfileEditBinding
     private val viewModel: StudentVM by activityViewModels()
     val pic: String get() {
-        //비트맵을 스트링으로
+        //이미지 비트맵을 스트링으로
         val baos = ByteArrayOutputStream()
         picbitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
         return Base64.encodeToString(baos.toByteArray(),Base64.DEFAULT)
-    }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
     }
 
     override fun onCreateView(
@@ -60,26 +54,17 @@ class ProfileEditFragment(var picbitmap: Bitmap) : Fragment() {
         // Inflate the layout for this fragment
         //생성시
         binding = FragmentProfileEditBinding.inflate(inflater, container, false)
-
         binding.imageView2.setImageBitmap(picbitmap)
-        //프로퍼티는 스마트캐스트가 안되기 때문에 영역함수 let 이용
-        arguments?.let{
-
-        }
 
         binding.button2.setOnClickListener {
-
-            // 입력 데이터를 가져옵니다
-
             val num = binding.editstnum.text.toString()
             val ss = binding.editsessoin.text.toString()
             val line = binding.editline.text.toString()
             viewModel.updateprof(num,ss,line,pic)
             MainActivity.getInstance()?.setMainFragment(ProfileFragment(),"프로필")
 
-            // FragmentResult를 설정합니다
-            val resBundle = Bundle().apply{
 
+            val resBundle = Bundle().apply{
                 putString("num", num)
                 putString("ss", ss)
                 putString("line", line)
@@ -94,7 +79,7 @@ class ProfileEditFragment(var picbitmap: Bitmap) : Fragment() {
         return binding.root
     }
 
-
+    //이미지추가
     private fun addImg(){
         // sdk 버전에 따른 파일 읽기 권한
         val readPermission =
