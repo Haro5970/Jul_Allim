@@ -8,13 +8,6 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.jul_allim.databinding.ActivityMainBinding
-
-class Navbtn(
-    val btn: android.widget.ImageButton,
-    val frag: Fragment,
-    val title: String,
-    )
-
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
 
@@ -31,6 +24,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    class Navbtn(
+        val btn: android.widget.ImageButton,
+        val frag: Fragment,
+        val title: String,
+    )
     lateinit var btn_nav: Array<Navbtn>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,5 +109,7 @@ class MainActivity : AppCompatActivity() {
             backPressedTime = System.currentTimeMillis()
         }
     }
+
+
 
 }
